@@ -359,14 +359,14 @@ CIRURGIOES = [
         "perfil_cpp": "ÁGUIA",
         "score_compra": 84,
         "perfil_evidencias": [
-            "100% particular declarado · consulta R$400 (Doctoralia)",
+            "100% particular declarado · consulta R$650 (Doctoralia)",
             "13 reviews 5 estrelas",
             "FMRP-USP + Memorial Sloan-Kettering — top 1% Brasil",
             "Chefe de setor HC-USP-RP",
             "Site profissional + IG ativo + endereço Metropolitan Business Center",
         ],
         "dores_top3": [
-            ("Estagnação + ticket abaixo do repertório técnico", "Sloan-Kettering no currículo, R$400 a consulta em RP. Os dois números não conversam."),
+            ("Estagnação + ticket abaixo do repertório técnico", "Sloan-Kettering no currículo, R$650 a consulta em RP. Os dois números não conversam."),
             ("Dependência de hospital + indicação acadêmica", "Toda tração vem do HC e do encaminhamento USP — sem entrada autônoma de paciente particular pago. IG dormente, site institucional."),
             ("Síndrome do impostor comercial", "Perfil USP/Sloan tende a separar 'medicina séria' de 'vendas'. Vende excelência genérica, não o nicho craveado (câncer de próstata robótico)."),
         ],
@@ -377,7 +377,7 @@ CIRURGIOES = [
         ],
         "hooks_abertura": [
             "Rafael, você é o cara que pegou Sloan-Kettering e voltou pra Ribeirão. Em quantos pacientes particulares por mês isso está se traduzindo hoje — e quanto você acha que deveria estar?",
-            "R$400 a consulta. Sloan-Kettering no currículo. Olha pra esses dois números e me diz se eles conversam.",
+            "R$650 a consulta. Sloan-Kettering no currículo. Olha pra esses dois números e me diz se eles conversam.",
             "Abri seu Instagram. 9,5 mil seguidores, último post em dezembro. Você está deixando dinheiro e autoridade na mesa por escolha ou por travamento?",
         ],
         "objecoes_esperadas": [
@@ -398,7 +398,7 @@ CIRURGIOES = [
             "frase_central": "Top 1% do Brasil em currículo (USP + Sloan-Kettering + Da Vinci) com 440 posts produzidos e 4.025 seguidores. O gap não é falta de produção. É falta de virada de algoritmo e narrativa.",
             "pontos": [
                 "FMRP-USP + Memorial Sloan-Kettering + cirurgia robótica = combinação rara mesmo em capital. Em Ribeirão Preto é singularíssima.",
-                "Consulta R$ 400 em 2026 num cirurgião com fellowship internacional = 50% abaixo do que urologistas com metade do CV cobram em SP/Brasília.",
+                "Consulta R$ 650 em 2026 num cirurgião com fellowship internacional = 50% abaixo do que urologistas com metade do CV cobram em SP/Brasília.",
                 "100% particular declarado, mas a entrada de paciente vem do HC-USP e indicação médica — sem fluxo autônomo direto pelo seu nome.",
                 "Instagram verificado com 440 posts e 7 destaques temáticos organizados. Bio expandida lista 4 áreas (próstata · robótica · litíase · disfunção). Não é falta de produção — é falta de aresta única e narrativa pessoal. Sloan-Kettering nem aparece na bio.",
             ],
@@ -411,7 +411,7 @@ CIRURGIOES = [
                 "acoes": [
                     "Reescrever bio + site em torno de UMA promessa: 'O uro-oncologista de Ribeirão treinado em Sloan-Kettering'. Sloan-Kettering precisa estar na bio — hoje não está",
                     "Estreitar bio das 4 áreas (próstata · robótica · litíase · disfunção) para UMA aresta âncora: câncer de próstata robótico premium",
-                    "Subir consulta de R$ 400 para R$ 800-1.200 — paciente que paga R$ 400 hoje paga R$ 1.000 amanhã pra ver o cara do Sloan-Kettering",
+                    "Subir consulta de R$ 650 para R$ 800-1.200 — paciente que paga R$ 650 hoje paga R$ 1.000 amanhã pra ver o cara do Sloan-Kettering",
                     "Adicionar camada humana aos reels: 'por que escolhi uro-oncologia', case real do paciente, bastidor da decisão difícil — sair do tom puramente institucional",
                 ],
             },
@@ -1207,7 +1207,6 @@ OFERTA = [
     # SUPORTE
     {"cat": "SUPORTE", "icon": "💬", "nome": "Suporte PREMIUM individual via WhatsApp", "valor": "R$ 10.000", "imensuravel": False},
     # IMENSURÁVEIS
-    {"cat": "MARCA", "icon": "✨", "nome": "Brand Kit cirúrgico personalizado", "valor": "Imensurável", "imensuravel": True},
     {"cat": "COMUNIDADE", "icon": "🤝", "nome": "Grupo com outros cirurgiões mentorados", "valor": "Imensurável", "imensuravel": True},
     {"cat": "COMUNIDADE", "icon": "🔑", "nome": "Grupo direto com Patrick e Mateus", "valor": "Imensurável", "imensuravel": True},
     {"cat": "RITUAL", "icon": "💎", "nome": "Ritual de primeira cirurgia particular R$50k+", "valor": "Imensurável", "imensuravel": True},

@@ -71,8 +71,8 @@ FBI = {
         "pitch_direcionado": [
             ("Reposicionar como categoria, não como urologista genérico",
              "'O uro-oncologista de Ribeirão Preto treinado em Sloan-Kettering' precisa estar na bio, no site, na primeira frase de qualquer apresentação. Diferenciação cravada"),
-            ("Subir o ticket de consulta de R$400 para R$800-1.200",
-             "Paciente que paga R$400 hoje, paga R$1.000 amanhã pra ver o cara do Sloan-Kettering. O preço atual é incoerente com o repertório técnico"),
+            ("Subir o ticket de consulta de R$650 para R$800-1.200",
+             "Paciente que paga R$650 hoje, paga R$1.000 amanhã pra ver o cara do Sloan-Kettering. O preço atual é incoerente com o repertório técnico"),
             ("Construir o 'Programa Próstata Premium' robótico",
              "Jornada robótica completa — pré-cirúrgico + cirurgia robótica + acompanhamento 24 meses — como ticket único de R$ 80-120k, em vez de procedimento isolado"),
             ("Sair de operador individual para arquiteto de sistema",
@@ -81,7 +81,7 @@ FBI = {
         "pontos_internos": [
             "Sócio operacional Dr. Tiago Borelli Bovo (Johns Hopkins, +1.500 cirurgias robóticas, Diretor Robótico São Lucas) é a sombra que ofusca Rafael. Ele é #2 num jogo onde quer ser #1",
             "11 anos sem publicar pós-tese (2015→2026). Pode ter ficado 'em dívida' com o orientador-pai (Reis)",
-            "Currículo Champions League, ticket Série C (R$400)",
+            "Currículo Champions League, ticket Série C (R$650)",
             "Perfil yahoo.com.br + IG sem rosto-protagonista = conservador digitalmente. Patrick precisa ser preciso, não histriônico",
             "Lead AAA potencial · score 84 · considerar entrada como case ou versão premium",
         ],
