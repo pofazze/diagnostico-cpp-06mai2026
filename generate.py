@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera 9 HTMLs (1 hub painel pra Patrick+Mateus + 8 apresentações pros médicos)."""
 import os, html, re
-from data import (CIRURGIOES, iniciais, OFERTA,
+from data import (CIRURGIOES, iniciais, OFERTA, IG_ANALISE,
                   OFERTA_VALOR_TOTAL_MENSURAVEL, OFERTA_TOTAL_ELEMENTOS, OFERTA_INTANGIVEIS,
                   PRECO_PADRAO, PRECO_DESCONTO_PCT, PRECO_EXCLUSIVO)
 
@@ -204,6 +204,9 @@ def render_hub():
         pl = perfil_label(c.get('perfil_cpp')).split(' ')[0]
         score_str = f'<span class="op-score">{c["score_compra"]}</span>' if c.get('score_compra') else '<span class="op-score muted">—</span>'
 
+        ig = IG_ANALISE.get(c['slug'], {})
+        verificado_badge = '<span class="op-verified" title="Selo azul de verificação">✓</span>' if ig.get('verificado') else ''
+
         # dores rápidas
         dores_short = []
         for dor, _ in (c.get('dores_top3') or [])[:3]:
@@ -226,12 +229,76 @@ def render_hub():
 
         correcao_html = f'<div class="op-correcao">🔁 {safe(c["correcao_grafia"])}</div>' if c.get("correcao_grafia") else ""
 
+        # ============== ANÁLISE PROFUNDA DO INSTAGRAM ==============
+        ig_block_html = ""
+        if ig:
+            conteudo_li = "\n".join(f'<li>{safe(x)}</li>' for x in ig.get('conteudo',[]))
+            gaps_li = "\n".join(f'<li>{safe(g)}</li>' for g in ig.get('gaps_ig',[]))
+            score_visual = ig.get('score_visual', 0)
+            score_class = "high" if score_visual >= 70 else ("mid" if score_visual >= 40 else "low")
+            verif_text = '<span class="ig-verified">✓ Verificado</span>' if ig.get('verificado') else '<span class="ig-not-verified">sem verificação</span>'
+
+            ig_block_html = f"""
+      <div class="op-block op-block-wide ig-deep">
+        <div class="ig-deep-head">
+          <img src="{safe(ig.get('foto'))}" alt="{safe(ig.get('handle'))}" class="ig-avatar" loading="lazy" onerror="this.style.display='none'">
+          <div class="ig-deep-meta">
+            <h5 style="margin-bottom: 4px;">📱 Análise profunda do Instagram</h5>
+            <div class="ig-handle-row">
+              <a href="{safe(ig.get('url'))}" target="_blank" rel="noopener" class="ig-handle-link">{safe(ig.get('handle'))}</a>
+              {verif_text}
+            </div>
+            <div class="ig-stats">
+              <span><strong>{safe(ig.get('seguidores'))}</strong> seguidores</span>
+              <span class="dot"></span>
+              <span><strong>{safe(ig.get('posts'))}</strong> posts</span>
+              {('<span class="dot"></span><span><strong>' + safe(ig.get('seguindo')) + '</strong> seguindo</span>') if ig.get('seguindo') and ig.get('seguindo') != "—" else ''}
+            </div>
+            <div class="ig-score-bar">
+              <div class="ig-score-label">Marca digital</div>
+              <div class="ig-score-track"><div class="ig-score-fill {score_class}" style="width: {score_visual}%"></div></div>
+              <div class="ig-score-num">{score_visual}<span class="muted">/100</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ig-deep-body">
+          <div class="ig-deep-row">
+            <div class="ig-k">Bio literal</div>
+            <div class="ig-v ig-quote">{safe(ig.get('bio_literal'))}</div>
+          </div>
+          <div class="ig-deep-row">
+            <div class="ig-k">Tom</div>
+            <div class="ig-v">{safe(ig.get('tom'))}</div>
+          </div>
+          <div class="ig-deep-row">
+            <div class="ig-k">Conteúdo</div>
+            <div class="ig-v"><ul class="ig-list">{conteudo_li}</ul></div>
+          </div>
+          <div class="ig-deep-row">
+            <div class="ig-k">Branding</div>
+            <div class="ig-v">{safe(ig.get('branding'))}</div>
+          </div>
+          <div class="ig-deep-row">
+            <div class="ig-k">Diagnóstico</div>
+            <div class="ig-v ig-diag">{safe(ig.get('diagnostico'))}</div>
+          </div>
+          <div class="ig-deep-row">
+            <div class="ig-k">Gaps cirúrgicos</div>
+            <div class="ig-v"><ul class="ig-gaps">{gaps_li}</ul></div>
+          </div>
+        </div>
+      </div>"""
+
+        avatar_head = f'<img src="{safe(ig.get("foto"))}" alt="" class="op-head-avatar" loading="lazy" onerror="this.style.display=\'none\'">' if ig.get("foto") else ''
+
         fila_cards.append(f"""
     <article class="op-card" id="op-{c['slug']}">
       <header class="op-card-head">
         <div class="op-time">{c['hora']}</div>
+        {avatar_head}
         <div class="op-id">
-          <h3>{safe(c['nome'])}</h3>
+          <h3>{safe(c['nome'])} {verificado_badge}</h3>
           <div class="op-meta">
             <span class="op-perfil {pc}">{safe(pl)}</span>
             {score_str}
@@ -245,14 +312,14 @@ def render_hub():
       {correcao_html}
       {alerta_html}
 
+      {ig_block_html}
+
       <div class="op-grid">
         <div class="op-block">
           <h5>📋 Identidade</h5>
           <div class="op-kv">
             <div class="k">CRM</div><div class="v">{safe(c.get('crm') or '—')}</div>
-            <div class="k">Instagram</div><div class="v">{ig_line}</div>
             <div class="k">Site</div><div class="v">{site_line}</div>
-            <div class="k">Bio IG</div><div class="v small">{safe(c.get('instagram_bio') or '—')}</div>
             <div class="k">Tagline</div><div class="v small">{safe(c.get('tagline_atual') or '—')}</div>
             <div class="k">Zoom</div><div class="v"><a href="{c['zoom']}" target="_blank" rel="noopener" class="op-link">link da call</a></div>
           </div>
