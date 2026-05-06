@@ -556,6 +556,56 @@ def render_individual(c):
         <p>{safe(descricao)}</p>
       </div>'''
 
+    # LEITURA DO INSTAGRAM (pública · elegante · alinhada à promessa da live)
+    ig = IG_ANALISE.get(c['slug'], {})
+    ig_public_html = ""
+    if ig:
+        verif_html = '<span class="ig-pub-verified">✓ Verificado</span>' if ig.get('verificado') else ''
+        sub_stats = []
+        if ig.get('seguidores') and ig.get('seguidores') != "—": sub_stats.append(f'<div class="ig-pub-stat"><div class="num">{safe(ig["seguidores"])}</div><div class="label">seguidores</div></div>')
+        if ig.get('posts') and ig.get('posts') != "—": sub_stats.append(f'<div class="ig-pub-stat"><div class="num">{safe(ig["posts"])}</div><div class="label">posts</div></div>')
+        if ig.get('seguindo') and ig.get('seguindo') != "—": sub_stats.append(f'<div class="ig-pub-stat"><div class="num">{safe(ig["seguindo"])}</div><div class="label">seguindo</div></div>')
+
+        ig_public_html = f"""
+<section class="ig-public-section">
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <span class="eyebrow">Leitura da sua presença digital</span>
+      <h2>O que o seu <em class="gold-accent">Instagram</em> conta sobre você hoje</h2>
+    </div>
+
+    <div class="ig-public-card">
+      <div class="ig-public-head">
+        <img src="{safe(ig.get('foto'))}" alt="{safe(ig.get('handle'))}" class="ig-pub-avatar" loading="lazy" onerror="this.style.display='none'">
+        <div class="ig-public-info">
+          <div class="ig-pub-handle-row">
+            <a href="{safe(ig.get('url'))}" target="_blank" rel="noopener" class="ig-pub-handle">{safe(ig.get('handle'))}</a>
+            {verif_html}
+          </div>
+          <div class="ig-pub-bio">{safe(ig.get('bio_literal'))}</div>
+        </div>
+      </div>
+
+      {('<div class="ig-pub-stats">' + ''.join(sub_stats) + '</div>') if sub_stats else ''}
+
+      <div class="ig-public-readout">
+        <div class="ig-pub-row">
+          <h5>Tom de comunicação</h5>
+          <p>{safe(ig.get('tom'))}</p>
+        </div>
+        <div class="ig-pub-row">
+          <h5>Branding atual</h5>
+          <p>{safe(ig.get('branding'))}</p>
+        </div>
+        <div class="ig-pub-row ig-pub-row-diag">
+          <h5>O que isso significa</h5>
+          <p>{safe(ig.get('diagnostico'))}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>"""
+
     # PRÉ-DIAGNÓSTICO
     pre_diag = c.get('pre_diagnostico') or {}
     pre_diag_html = ""
@@ -696,6 +746,8 @@ def render_individual(c):
     </div>
   </div>
 </section>
+
+{ig_public_html}
 
 {pre_diag_html}
 
