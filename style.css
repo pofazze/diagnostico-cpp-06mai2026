@@ -378,3 +378,198 @@ body:not(.cirurgico-on) .cirurgico-toggle::before { content: '🔒 '; }
 
 /* hub: heading */
 .hub-grid-head { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+
+/* ============== PAINEL OPERACIONAL (hub interno) ============== */
+.ops-badge {
+  font-family: var(--sans); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--gold); padding: 6px 14px; border: 1px solid var(--gold-dark); border-radius: 100px;
+  background: rgba(212,175,55,0.05);
+}
+
+.quick-nav {
+  display: flex; flex-wrap: wrap; gap: 8px; padding: 18px 22px;
+  background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px;
+}
+.quick-nav-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 14px; background: var(--bg-3); border: 1px solid var(--border); border-radius: 100px;
+  font-size: 0.82rem; color: var(--text-2); text-decoration: none; transition: all .2s;
+}
+.quick-nav-link:hover { border-color: var(--gold-dark); color: var(--gold); }
+.qn-time { font-family: var(--serif); font-weight: 600; color: var(--gold); }
+.qn-dot { width: 8px; height: 8px; border-radius: 50%; }
+.qn-dot.aguia { background: var(--gold-bright); box-shadow: 0 0 8px var(--gold); }
+.qn-dot.gaviao { background: var(--success); }
+.qn-dot.urubu { background: var(--info); }
+.qn-dot.pato { background: var(--text-3); }
+.qn-dot.incerto { background: var(--danger); }
+
+.op-card {
+  background: linear-gradient(180deg, var(--bg-2), var(--bg-3));
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-bottom: 28px;
+  scroll-margin-top: 100px;
+}
+.op-card-head {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 24px; align-items: center;
+  padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 22px;
+}
+.op-time {
+  font-family: var(--serif); font-size: 2.4rem; color: var(--gold); font-weight: 600; line-height: 1;
+  font-feature-settings: "tnum"; padding-right: 24px; border-right: 1px solid var(--border);
+}
+.op-id h3 { margin-bottom: 8px; line-height: 1.1; }
+.op-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; font-size: 0.85rem; }
+.op-perfil {
+  font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+  padding: 3px 10px; border-radius: 100px; border: 1px solid currentColor;
+}
+.op-perfil.aguia { color: var(--gold-bright); }
+.op-perfil.gaviao { color: var(--success); }
+.op-perfil.urubu { color: var(--info); }
+.op-perfil.pato { color: var(--text-3); }
+.op-perfil.incerto { color: var(--danger); }
+.op-score {
+  font-family: var(--serif); font-size: 1.3rem; color: var(--gold); font-weight: 600;
+  padding: 0 8px; border-radius: 6px; background: rgba(212,175,55,0.08);
+  font-feature-settings: "tnum";
+}
+.op-score.muted { color: var(--text-4); background: transparent; }
+.op-spec { color: var(--text-2); }
+.op-loc { color: var(--text-3); }
+.op-link-mapa {
+  font-family: var(--sans); font-size: 0.78rem; color: var(--gold-soft);
+  padding: 8px 14px; border: 1px solid var(--gold-dark); border-radius: 100px;
+  text-decoration: none; transition: all .2s; white-space: nowrap;
+}
+.op-link-mapa:hover { background: rgba(212,175,55,0.08); color: var(--gold-bright); }
+
+.op-correcao, .op-alerta {
+  margin-bottom: 14px; padding: 10px 16px; border-radius: 8px;
+  font-size: 0.85rem; line-height: 1.5;
+}
+.op-correcao { background: rgba(212,175,55,0.05); border: 1px solid var(--gold-dark); color: var(--text-2); }
+.op-alerta { background: rgba(224, 123, 103, 0.05); border: 1px solid var(--danger); color: var(--text-2); }
+
+.op-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+}
+.op-block-wide { grid-column: 1 / -1; }
+@media (max-width: 720px) {
+  .op-grid { grid-template-columns: 1fr; }
+  .op-card-head { grid-template-columns: auto 1fr; }
+  .op-link-mapa { grid-column: 1/-1; text-align: center; margin-top: 8px; }
+  .op-time { font-size: 1.8rem; padding-right: 16px; }
+}
+
+.op-block {
+  background: rgba(28, 24, 20, 0.5);
+  border: 1px solid var(--border); border-radius: 10px;
+  padding: 18px 20px;
+}
+.op-block h5 {
+  font-family: var(--sans); font-size: 0.74rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: 12px;
+}
+.op-p { color: var(--text-2); font-size: 0.92rem; line-height: 1.6; }
+.op-num { padding-left: 18px; }
+.op-num li { color: var(--text-2); font-size: 0.92rem; padding: 4px 0; }
+.op-bul { list-style: none; padding: 0; }
+.op-bul li {
+  position: relative; padding: 6px 0 6px 18px; color: var(--text-2); font-size: 0.92rem; line-height: 1.55;
+}
+.op-bul li::before {
+  content: '·'; color: var(--gold); position: absolute; left: 4px; top: 2px; font-size: 1.4rem;
+}
+.op-bul li strong { color: var(--text); }
+.op-kv { display: grid; grid-template-columns: 100px 1fr; gap: 10px 14px; font-size: 0.88rem; }
+.op-kv .k { color: var(--text-3); font-size: 0.78rem; }
+.op-kv .v { color: var(--text-2); }
+.op-kv .v.small { font-size: 0.82rem; }
+.op-link { color: var(--gold-soft); }
+.op-link:hover { color: var(--gold-bright); }
+
+.op-hook {
+  border-left: 2px solid var(--gold); padding: 8px 0 8px 16px;
+  font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--text);
+  margin: 8px 0;
+}
+
+/* ============== MAPA DA OFERTA (CTA pitch nas individuais) ============== */
+.oferta-section {
+  padding: 100px 0 100px;
+  background: linear-gradient(180deg, transparent, rgba(212,175,55,0.03) 30%, rgba(212,175,55,0.05) 60%, transparent);
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.oferta-section::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 80px; height: 2px; background: var(--gold);
+}
+
+.oferta-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px; margin-top: 16px;
+}
+.oferta-card {
+  background: linear-gradient(180deg, var(--bg-3), var(--bg-2));
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 22px 22px;
+  display: flex; flex-direction: column; gap: 8px;
+  position: relative; transition: all .2s;
+  min-height: 180px;
+}
+.oferta-card.tangible { border-left: 3px solid var(--gold-dark); }
+.oferta-card.imensuravel {
+  border-left: 3px solid var(--gold-bright);
+  background: linear-gradient(180deg, rgba(212,175,55,0.04), rgba(212,175,55,0.02));
+}
+.oferta-card.highlight {
+  background: linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.03));
+  border-color: var(--gold);
+  box-shadow: 0 0 30px -10px rgba(212,175,55,0.2);
+}
+.oferta-card:hover { transform: translateY(-2px); border-color: var(--gold-dark); }
+.oferta-icon { font-size: 1.8rem; line-height: 1; }
+.oferta-cat {
+  font-family: var(--sans); font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); font-weight: 700;
+}
+.oferta-nome {
+  font-family: var(--serif); font-size: 1.05rem; color: var(--text); line-height: 1.35; font-weight: 500;
+  flex-grow: 1;
+}
+.oferta-valor {
+  font-family: var(--serif); font-size: 1.2rem; color: var(--gold-bright); font-weight: 600;
+  font-feature-settings: "tnum"; margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--border);
+}
+.oferta-card.imensuravel .oferta-valor { font-style: italic; color: var(--gold); }
+
+.oferta-totals {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 36px;
+}
+@media (max-width: 720px) { .oferta-totals { grid-template-columns: 1fr; } }
+.oferta-total {
+  text-align: center;
+  background: var(--bg-2); border: 1px solid var(--border-2); border-radius: 12px;
+  padding: 30px 24px;
+}
+.oferta-total.intangible {
+  background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0.02));
+  border-color: var(--gold-dark);
+}
+.oferta-total-label {
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); font-weight: 600;
+  margin-bottom: 12px;
+}
+.oferta-total-value {
+  font-family: var(--serif); font-size: 2.6rem; color: var(--gold); font-weight: 600;
+  line-height: 1; font-feature-settings: "tnum";
+}
+.oferta-total-value.gold { color: var(--gold-bright); font-style: italic; }
+.oferta-total-sub { font-size: 0.85rem; color: var(--text-3); margin-top: 10px; }
+
+/* ajustar topbar interna pra link operacional */
+.brand-text .accent { color: var(--gold); }

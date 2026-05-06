@@ -695,3 +695,32 @@ def iniciais(nome):
     if len(parts) >= 2:
         return (parts[0][0] + parts[-1][0]).upper()
     return parts[0][:2].upper() if parts else "??"
+
+# ============================================================================
+# OFERTA · 13 elementos do programa Cirurgião Particular Premium
+# Valor mensurável: R$ 300.000 · Intangíveis: 5 elementos sem preço de mercado
+# ============================================================================
+OFERTA = [
+    # MENTORIA
+    {"cat": "MENTORIA", "icon": "🎯", "nome": "3 Mentorias individuais PREMIUM", "valor": "R$ 100.000", "imensuravel": False, "highlight": True},
+    {"cat": "MENTORIA", "icon": "👥", "nome": "Mentorias quinzenais em grupo com Patrick e/ou Mateus", "valor": "R$ 60.000", "imensuravel": False},
+    {"cat": "MENTORIA", "icon": "🚀", "nome": "Onboarding PREMIUM com Patrick e/ou Mateus", "valor": "R$ 30.000", "imensuravel": False},
+    # MÉTODO
+    {"cat": "MÉTODO", "icon": "📚", "nome": "Área de membros com método PREMIUM (7 pilares)", "valor": "R$ 20.000", "imensuravel": False},
+    {"cat": "MÉTODO", "icon": "🗺️", "nome": "Plano de ação acompanhado", "valor": "R$ 30.000", "imensuravel": False},
+    # PRESENCIAL
+    {"cat": "PRESENCIAL", "icon": "🏛️", "nome": "2 Imersões presenciais/ano (6-7/Ago SP + Mar/27)", "valor": "R$ 10.000", "imensuravel": False},
+    {"cat": "PRESENCIAL", "icon": "🩺", "nome": "2 Oficinas para a sua equipe médica", "valor": "R$ 40.000", "imensuravel": False},
+    # SUPORTE
+    {"cat": "SUPORTE", "icon": "💬", "nome": "Suporte PREMIUM individual via WhatsApp", "valor": "R$ 10.000", "imensuravel": False},
+    # IMENSURÁVEIS
+    {"cat": "MARCA", "icon": "✨", "nome": "Brand Kit cirúrgico personalizado", "valor": "Imensurável", "imensuravel": True},
+    {"cat": "COMUNIDADE", "icon": "🤝", "nome": "Grupo com outros cirurgiões mentorados", "valor": "Imensurável", "imensuravel": True},
+    {"cat": "COMUNIDADE", "icon": "🔑", "nome": "Grupo direto com Patrick e Mateus", "valor": "Imensurável", "imensuravel": True},
+    {"cat": "RITUAL", "icon": "💎", "nome": "Ritual de primeira cirurgia particular R$50k+", "valor": "Imensurável", "imensuravel": True},
+    {"cat": "ELITE", "icon": "👑", "nome": "Club PREMIUM 100K", "valor": "Imensurável", "imensuravel": True},
+]
+
+OFERTA_VALOR_TOTAL_MENSURAVEL = 300000  # soma R$
+OFERTA_TOTAL_ELEMENTOS = len(OFERTA)
+OFERTA_INTANGIVEIS = sum(1 for o in OFERTA if o["imensuravel"])

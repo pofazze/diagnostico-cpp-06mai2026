@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
-"""Gera 9 HTMLs (1 hub + 8 individuais) a partir de data.py."""
-import os, sys, html
-from data import CIRURGIOES, iniciais
+"""Gera 9 HTMLs (1 hub painel pra Patrick+Mateus + 8 apresentações pros médicos)."""
+import os, html, re
+from data import CIRURGIOES, iniciais, OFERTA, OFERTA_VALOR_TOTAL_MENSURAVEL, OFERTA_TOTAL_ELEMENTOS, OFERTA_INTANGIVEIS
 
 OUT = os.path.dirname(os.path.abspath(__file__))
-DATA_DIA = "06 de Maio · 2026"
-TITULO_DIA = "Diagnóstico CPP"
 
-# ============ HEAD COMPARTILHADO ============
 HEAD = """<!doctype html>
 <html lang="pt-BR">
 <head>
@@ -32,40 +29,31 @@ TOPBAR = """
   <div class="topbar-inner">
     <a href="index.html" class="brand">
       <span class="brand-mark">CPP</span>
-      <span class="brand-text">Cirurgião Particular Premium · <span class="accent">Diagnóstico</span></span>
+      <span class="brand-text">Cirurgião Particular Premium · <span class="accent">{label}</span></span>
     </a>
     {nav}
   </div>
 </header>
 """
 
-FOOT = """
+FOOT_PUBLIC = """
 <footer class="foot">
   <div class="wrap">
     <p class="small">Cirurgião Particular Premium · Diagnóstico individual com Patrick Suyti + Dr. Mateus Jerônimo</p>
     <p class="gold" style="margin-top:8px">06 de Maio · 2026</p>
   </div>
 </footer>
-<button class="cirurgico-toggle" onclick="toggleModo()">Modo cirúrgico</button>
-<script>
-function toggleModo() {
-  document.body.classList.toggle('cirurgico-on');
-  const url = new URL(window.location);
-  if (document.body.classList.contains('cirurgico-on')) {
-    url.searchParams.set('modo','cirurgico');
-  } else {
-    url.searchParams.delete('modo');
-  }
-  history.replaceState(null,'',url);
-}
-const params = new URLSearchParams(window.location.search);
-if (params.get('modo') === 'cirurgico') document.body.classList.add('cirurgico-on');
-document.addEventListener('keydown', function(e) {
-  if ((e.key === 'c' || e.key === 'C') && !e.ctrlKey && !e.metaKey && !e.altKey && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
-    toggleModo();
-  }
-});
-</script>
+</body>
+</html>
+"""
+
+FOOT_OPS = """
+<footer class="foot">
+  <div class="wrap">
+    <p class="small">Painel operacional · Patrick Suyti + Dr. Mateus Jerônimo</p>
+    <p class="gold" style="margin-top:8px">Diagnóstico CPP · 06 de Maio · 2026</p>
+  </div>
+</footer>
 </body>
 </html>
 """
@@ -93,10 +81,61 @@ def li(items):
 def nav_back_button(text="← voltar ao painel"):
     return f'<a href="index.html" class="nav-back">{text}</a>'
 
-# ============ HUB ============
+# ============================================================================
+# MAPA DA OFERTA — usado nas individuais como pitch ancorado
+# ============================================================================
+def render_oferta_mapa():
+    cards = []
+    for i, item in enumerate(OFERTA, 1):
+        valor_class = "imensuravel" if item["imensuravel"] else "tangible"
+        highlight_class = " highlight" if item.get("highlight") else ""
+        cards.append(f"""
+      <div class="oferta-card {valor_class}{highlight_class}">
+        <div class="oferta-icon">{item['icon']}</div>
+        <div class="oferta-cat">{item['cat']}</div>
+        <div class="oferta-nome">{safe(item['nome'])}</div>
+        <div class="oferta-valor">{safe(item['valor'])}</div>
+      </div>""")
+
+    total_str = f"R$ {OFERTA_VALOR_TOTAL_MENSURAVEL:,}".replace(",",".")
+    return f"""
+<section class="oferta-section">
+  <div class="wrap-narrow">
+    <div class="section-head" style="text-align: center; margin-bottom: 56px;">
+      <span class="eyebrow">O que está dentro</span>
+      <h2>O programa Cirurgião Particular Premium</h2>
+      <p style="font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--text-2); margin-top: 16px; max-width: 60ch; margin-left: auto; margin-right: auto;">{OFERTA_TOTAL_ELEMENTOS} elementos. {OFERTA_TOTAL_ELEMENTOS - OFERTA_INTANGIVEIS} com preço de mercado declarado. {OFERTA_INTANGIVEIS} intangíveis que não cabem em planilha.</p>
+    </div>
+
+    <div class="oferta-grid">{''.join(cards)}
+    </div>
+
+    <div class="oferta-totals">
+      <div class="oferta-total">
+        <div class="oferta-total-label">Soma do que cabe em planilha</div>
+        <div class="oferta-total-value">{total_str}</div>
+        <div class="oferta-total-sub">{OFERTA_TOTAL_ELEMENTOS - OFERTA_INTANGIVEIS} elementos com preço declarado</div>
+      </div>
+      <div class="oferta-total intangible">
+        <div class="oferta-total-label">O que não cabe em valor</div>
+        <div class="oferta-total-value gold">Imensurável</div>
+        <div class="oferta-total-sub">{OFERTA_INTANGIVEIS} elementos · marca, comunidade, ritual, elite</div>
+      </div>
+    </div>
+
+    <div class="cta-block" style="margin-top: 48px;">
+      <p class="eyebrow" style="margin-bottom: 12px;">A pergunta que importa</p>
+      <h2 style="color: var(--text); font-size: clamp(1.6rem, 3vw, 2.2rem); max-width: 22ch; margin: 0 auto;">Por quanto disso você acha que a sua próxima fase vale?</h2>
+    </div>
+  </div>
+</section>"""
+
+# ============================================================================
+# HUB · PAINEL DETALHADO PRA PATRICK + MATEUS
+# ============================================================================
 def render_hub():
-    title = "Diagnóstico CPP · 06 de Maio · 2026"
-    desc = "Diagnóstico individual de 8 cirurgiões com Patrick Suyti e Dr. Mateus Jerônimo · Cirurgião Particular Premium"
+    title = "Painel operacional · Diagnóstico CPP · 06 Maio 2026"
+    desc = "Painel detalhado dos 8 cirurgiões agendados para diagnóstico CPP em 06/05/2026 — uso interno Patrick Suyti + Dr. Mateus Jerônimo"
 
     # estatísticas
     perfis = {}
@@ -113,136 +152,223 @@ def render_hub():
             score_n += 1
     score_med = round(score_sum / score_n) if score_n else 0
 
-    cards_html = []
+    # cards-fila
+    fila_cards = []
     for c in CIRURGIOES:
         pc = perfil_class(c.get('perfil_cpp'))
         pl = perfil_label(c.get('perfil_cpp')).split(' ')[0]
-        cards_html.append(f"""
-    <a href="{c['slug']}.html" class="card">
-      <div class="card-row">
-        <span class="card-time">{c['hora']}</span>
-        <span class="card-perfil {pc}">{safe(pl)}</span>
-      </div>
-      <div>
-        <div class="card-name">{safe(c['nome'])}</div>
-        <div class="card-spec">{safe(c['especialidade'])}</div>
-      </div>
-      <div class="card-loc">📍 {safe(c['cidade'])} · {safe(c['estado'])}</div>
-      <div class="card-cta">Abrir mapa</div>
-    </a>""")
+        score_str = f'<span class="op-score">{c["score_compra"]}</span>' if c.get('score_compra') else '<span class="op-score muted">—</span>'
 
-    # composição do dia
+        # dores rápidas
+        dores_short = []
+        for dor, _ in (c.get('dores_top3') or [])[:3]:
+            dores_short.append(f'<li>{safe(dor)}</li>')
+
+        # hook 1
+        hook = (c.get('hooks_abertura') or [None])[0] or ""
+
+        ig_line = ""
+        if c.get('instagram'):
+            ig_line = f'<a href="{c["instagram_url"]}" target="_blank" rel="noopener" class="op-link">{safe(c["instagram"])}</a>'
+            if c.get('instagram_seguidores'):
+                ig_line += f' <span class="muted">· {safe(c["instagram_seguidores"])} seg · {safe(c["instagram_posts"] or "")} posts</span>'
+        else:
+            ig_line = '<span class="muted">sem IG pessoal</span>'
+
+        site_line = f'<a href="{c["site"]}" target="_blank" rel="noopener" class="op-link">{safe(c["site"])}</a>' if c.get("site") else '<span class="muted">sem site</span>'
+
+        alerta_html = f'<div class="op-alerta">⚠️ {safe(c.get("alerta_homonimo"))}</div>' if c.get("alerta_homonimo") and "97%" not in (c.get("alerta_homonimo") or "") and "100%" not in (c.get("alerta_homonimo") or "") and "95%" not in (c.get("alerta_homonimo") or "") and "90%" not in (c.get("alerta_homonimo") or "") else ""
+
+        correcao_html = f'<div class="op-correcao">🔁 {safe(c["correcao_grafia"])}</div>' if c.get("correcao_grafia") else ""
+
+        fila_cards.append(f"""
+    <article class="op-card" id="op-{c['slug']}">
+      <header class="op-card-head">
+        <div class="op-time">{c['hora']}</div>
+        <div class="op-id">
+          <h3>{safe(c['nome'])}</h3>
+          <div class="op-meta">
+            <span class="op-perfil {pc}">{safe(pl)}</span>
+            {score_str}
+            <span class="op-spec">{safe(c['especialidade'])}{(' · ' + safe(c['subespecialidade'])) if c.get('subespecialidade') else ''}</span>
+            <span class="op-loc">📍 {safe(c['cidade'])}/{safe(c['estado'])}</span>
+          </div>
+        </div>
+        <a href="{c['slug']}.html" class="op-link-mapa" target="_blank" title="abrir página de apresentação">↗ apresentação</a>
+      </header>
+
+      {correcao_html}
+      {alerta_html}
+
+      <div class="op-grid">
+        <div class="op-block">
+          <h5>📋 Identidade</h5>
+          <div class="op-kv">
+            <div class="k">CRM</div><div class="v">{safe(c.get('crm') or '—')}</div>
+            <div class="k">Instagram</div><div class="v">{ig_line}</div>
+            <div class="k">Site</div><div class="v">{site_line}</div>
+            <div class="k">Bio IG</div><div class="v small">{safe(c.get('instagram_bio') or '—')}</div>
+            <div class="k">Tagline</div><div class="v small">{safe(c.get('tagline_atual') or '—')}</div>
+            <div class="k">Zoom</div><div class="v"><a href="{c['zoom']}" target="_blank" rel="noopener" class="op-link">link da call</a></div>
+          </div>
+        </div>
+
+        <div class="op-block">
+          <h5>🎯 Posicionamento atual</h5>
+          <p class="op-p">{safe(c.get('posicionamento_atual_publico') or '—')}</p>
+        </div>
+
+        <div class="op-block">
+          <h5>💢 Top 3 dores</h5>
+          <ol class="op-num">{''.join(dores_short)}</ol>
+        </div>
+
+        <div class="op-block">
+          <h5>🔧 Top 3 gaps</h5>
+          <ul class="op-bul">{''.join(f'<li><strong>{safe(area)}</strong> — {safe(desc)}</li>' for area, desc in (c.get('gaps') or []))}</ul>
+        </div>
+
+        <div class="op-block op-block-wide">
+          <h5>🎤 Hooks de abertura · primeiros 60s</h5>
+          {''.join(f'<p class="op-hook"><span class="hook-num">HOOK {i}</span>"{safe(h)}"</p>' for i, h in enumerate(c.get('hooks_abertura') or [], 1))}
+        </div>
+
+        <div class="op-block">
+          <h5>🛡️ Objeções esperadas</h5>
+          <ul class="op-bul">{''.join(f'<li>{safe(o)}</li>' for o in (c.get('objecoes_esperadas') or []))}</ul>
+        </div>
+
+        <div class="op-block">
+          <h5>🧭 Abordagem recomendada</h5>
+          <p class="op-p">{safe(c.get('abordagem_recomendada') or '—')}</p>
+        </div>
+      </div>
+    </article>""")
+
+    # composição visual
     composicao_pieces = []
-    for k, label in [('aguia','Águias'),('gaviao','Gaviões'),('urubu','Urubus'),('pato','Patos'),('incerto','Incertos')]:
+    for k, label in [('aguia','Águias'),('gaviao','Gaviões'),('urubu','Urubus'),('pato','Patos'),('incerto','A confirmar')]:
         n = perfis.get(k, 0)
         if n: composicao_pieces.append(f'<span class="tag {("gold" if k=="aguia" else "")}">{n} {label}</span>')
 
     composicao_html = " ".join(composicao_pieces)
 
-    body = f"""
-{TOPBAR.format(nav='')}
+    # quick nav
+    quick_nav = []
+    for c in CIRURGIOES:
+        pc = perfil_class(c.get('perfil_cpp'))
+        quick_nav.append(f'<a href="#op-{c["slug"]}" class="quick-nav-link"><span class="qn-time">{c["hora"]}</span><span class="qn-dot {pc}"></span><span class="qn-name">{safe(c["nome"].replace("Dr. ","").replace("Dra. ","").split(" ")[0])} {safe(c["nome"].split(" ")[-1])}</span></a>')
 
-<section class="hero">
+    body = f"""
+{TOPBAR.format(label='Painel operacional', nav='<span class="ops-badge">🔒 Patrick + Mateus</span>')}
+
+<section class="hero" style="padding: 80px 0 50px;">
   <div class="wrap-narrow">
-    <span class="hero-eyebrow">Cirurgião Particular Premium</span>
-    <h1 class="hero-title">Diagnóstico individual · <span class="gold">06 de Maio</span></h1>
-    <p class="hero-sub">8 cirurgiões. Uma janela de oito horas. Um propósito único: enxergar com precisão onde cada um está hoje — e onde poderia estar amanhã.</p>
-    <div style="margin-top: 28px; color: var(--text-3); font-family: var(--serif); font-size: 1.05rem;">
-      Conduzido por <strong style="color: var(--gold-soft)">Patrick Suyti</strong> &amp; <strong style="color: var(--gold-soft)">Dr. Mateus Jerônimo</strong>
+    <span class="hero-eyebrow" style="background: rgba(212,175,55,0.06); border-color: var(--gold-dark); color: var(--gold-bright);">Painel operacional · uso interno</span>
+    <h1 class="hero-title" style="margin-bottom: 18px;">Diagnóstico CPP · <span class="gold">06 de Maio</span></h1>
+    <p class="hero-sub">8 cirurgiões. 8 perfis. Tudo o que você precisa saber antes de cada call — em uma única página.</p>
+    <div style="margin-top: 24px; color: var(--text-3); font-family: var(--serif); font-size: 1rem;">
+      <strong style="color: var(--gold-soft)">Patrick Suyti</strong> &amp; <strong style="color: var(--gold-soft)">Dr. Mateus Jerônimo</strong>
     </div>
   </div>
 </section>
 
-<section>
+<section style="padding: 30px 0 50px;">
   <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Visão de grupo</span>
-      <h2>O que esse dia significa</h2>
-    </div>
-
     <div class="stats-grid">
       <div class="stat">
         <div class="stat-label">Cirurgiões</div>
         <div class="stat-value">8</div>
-        <div class="stat-sub">um a cada hora</div>
+        <div class="stat-sub">um a cada hora · 11h-18h</div>
       </div>
       <div class="stat">
         <div class="stat-label">Identidade confirmada</div>
         <div class="stat-value">{confirmados}<span style="color: var(--text-4); font-size: 1.4rem">/8</span></div>
-        <div class="stat-sub">cruzamento CRM + redes</div>
+        <div class="stat-sub">prints + base + cruzamento</div>
       </div>
       <div class="stat">
-        <div class="stat-label">Score médio · base CPP</div>
+        <div class="stat-label">Score médio</div>
         <div class="stat-value">{score_med}<span style="color: var(--text-4); font-size: 1.4rem">/100</span></div>
-        <div class="stat-sub">{score_n} dos 8 já dossiados</div>
+        <div class="stat-sub">{score_n} dos 8 já dossiados na base</div>
       </div>
       <div class="stat">
-        <div class="stat-label">Janela</div>
-        <div class="stat-value">8h</div>
-        <div class="stat-sub">11h às 18h</div>
+        <div class="stat-label">Composição</div>
+        <div class="tags" style="margin-top: 6px;">{composicao_html}</div>
       </div>
-    </div>
-
-    <div class="block" style="margin-top: 32px">
-      <span class="block-eyebrow">Composição do dia</span>
-      <h3>A mistura é deliberadamente assimétrica</h3>
-      <p style="margin-top: 12px">Você não vai entrar oito vezes no mesmo cirurgião. Cada call exige uma postura diferente — e o painel ao lado mostra qual.</p>
-      <div class="tags" style="margin-top: 18px">{composicao_html}</div>
     </div>
   </div>
 </section>
 
-<section>
+<section style="padding: 0 0 40px; border-top: 0;">
   <div class="wrap">
-    <div class="hub-grid-head">
-      <div>
-        <span class="eyebrow">Agenda do dia</span>
-        <h2>Os 8 mapas individuais</h2>
-      </div>
-      <p class="muted" style="font-size: 0.9rem">Clique no card para abrir o diagnóstico em detalhe</p>
-    </div>
-    <div class="cards-grid">{''.join(cards_html)}
-    </div>
+    <div class="quick-nav">{''.join(quick_nav)}</div>
   </div>
 </section>
 
-<section class="cirurgico-section cirurgico" style="display:none">
+<section style="padding: 30px 0 80px; border-top: 1px solid var(--border);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">A fila do dia</span>
+      <h2>Os 8 cirurgiões · em ordem cronológica</h2>
+    </div>
+    {''.join(fila_cards)}
+  </div>
+</section>
+
+<section style="padding: 60px 0; border-top: 1px solid var(--border); background: rgba(212,175,55,0.02);">
   <div class="wrap-narrow">
     <div class="section-head">
-      <span class="eyebrow" style="color: var(--gold)">Painel cirúrgico do dia</span>
-      <h2>O que olhar antes de cada call</h2>
+      <span class="eyebrow">Estratégia do dia</span>
+      <h2>Como calibrar tom por perfil</h2>
     </div>
 
     <div class="block">
-      <span class="block-eyebrow">Pitches premium imediatos</span>
-      <h3>4 cirurgiões podem fechar hoje (perfil Águia/Gavião alto)</h3>
+      <span class="block-eyebrow">Pitches premium imediatos · 4 cirurgiões</span>
+      <h3>Águias e quasi-Águias — peer-to-peer, NUNCA "aprenda do zero"</h3>
       <ul class="bullets">
-        <li><strong>Rafael Bozzo Tacino</strong> · 12h · Águia · score 84 — peer-to-peer, NUNCA tom de "aprenda do zero"</li>
-        <li><strong>Marina Marangon Melhado</strong> · 16h · Águia · score 84 — elite-para-elite, vender escala não convênio</li>
-        <li><strong>Eduardo Watanabe Castanheira</strong> · 17h · Águia/Urubu · score 82 — pitch de LEGADO, sênior 30 anos</li>
-        <li><strong>Tatiana Patruni</strong> · 11h · Gavião · espelho duro, ela é Gavião com casca de Pato</li>
+        <li><strong>Rafael Bozzo Tacino</strong> · 12h · Águia · score 84 — Sloan-Kettering, 100% particular, R$400 underprice. Tom: "você venceu fase 1, está na fase 2"</li>
+        <li><strong>Tarik Soares Suleiman</strong> · 14h · Águia digital · score 78 · 31,6k seguidores · verificado · Mateus já segue. Posicionamento "vesícula" cravado</li>
+        <li><strong>Marina Marangon Melhado</strong> · 16h · Águia · score 84 · CNN+selo azul mas 100 seguidores. Dor: "casa não cabe a visita"</li>
+        <li><strong>Eduardo Watanabe Castanheira</strong> · 17h · Águia/Urubu digital · score 82 · 30 anos · 6,8k seg · 2 RQEs. Pitch de LEGADO</li>
       </ul>
     </div>
 
     <div class="block">
-      <span class="block-eyebrow">Qualificação financeira antes do pitch</span>
-      <h3>2 cirurgiões: ROI de 3-5 anos, não retorno imediato</h3>
+      <span class="block-eyebrow">Águia em construção · ABORDAGEM CORRIGIDA pós-print</span>
+      <h3>Felipe de Bulhões Ojeda · 18h</h3>
+      <p>NÃO é Pato cansado como dossiê inicial achou. <strong>É Águia em construção</strong>: verificado azul, IDOR-SP, 2 RQEs, site felipebulhoes.com, posicionamento "Tech, Performance, Saúde do Homem". Tom: pares acelerando, não fundação.</p>
+    </div>
+
+    <div class="block">
+      <span class="block-eyebrow">Gavião com tração</span>
+      <h3>Tatiana Patruni · 11h · Curitiba · sem score na base</h3>
+      <p>Gavião com casca de Pato. 14 anos de carreira, preceptora, rinoplastia · MAS 9k seg + 0 reviews Doctoralia + aceita Unimed. Tom: espelho duro.</p>
+    </div>
+
+    <div class="block">
+      <span class="block-eyebrow">Gavião que descobrimos pela planilha · sócio ICOD Brasília</span>
+      <h3>Paulo Victor de Souza Pereira · 13h</h3>
+      <p>97% identidade após cruzar planilha. Ortopedia pé/tornozelo, sócio ICOD Brasília (ICOD ≠ ICOD do Tarik · siglas iguais, instituições diferentes). 151 reviews 5⭐ Doctoralia · sem IG pessoal · diluído na sociedade. Tom: "caso de sucesso clínico que ainda não virou negócio".</p>
+    </div>
+
+    <div class="block">
+      <span class="block-eyebrow">Qualificação financeira ANTES do pitch</span>
+      <h3>2 cirurgiões com risco de ROI longo</h3>
       <ul class="bullets">
-        <li><strong>Júlio Fran da Silva Pinto</strong> · 15h · Urubu · score 45 — Timbó/SC, Unimed dominante, verificar capital</li>
-        <li><strong>Felipe (Fellype) de Bulhões Ojeda</strong> · 18h · Pato → Urubu · score 48 — plantonista, sem clínica, verificar capital próprio</li>
+        <li><strong>Júlio Fran da Silva Pinto</strong> · 15h · Urubu · score 45 · Timbó/SC · Unimed dominante · IG fechado/inativo</li>
       </ul>
+      <p style="margin-top:14px">Pitch deve ser visão de 12-18 meses, parcelamento longo. Cuidado: pode ser Pato fingindo Gavião — verificar capital próprio.</p>
     </div>
 
     <div class="block">
-      <span class="block-eyebrow">Crítico</span>
-      <h3>Tarik Soares Suleiman · 14h · Gavião · score 78</h3>
-      <p>Lead AAA estrutural. Tom técnico+ambicioso. Bariátrica como produto premium, não como cirurgia.</p>
-    </div>
-
-    <div class="block">
-      <span class="block-eyebrow">⚠️ Confirmação de identidade obrigatória nos primeiros 5min</span>
-      <h3>Paulo Victor Pereira · 13h · &lt;30% confiança</h3>
-      <p>Não está na base do desafio R$97. Múltiplos candidatos no Brasil. Pedir CRM + cidade + especialidade ANTES de qualquer pitch. Stephany pode puxar cadastro.</p>
+      <span class="block-eyebrow">Achados críticos via prints + planilha</span>
+      <ul class="bullets">
+        <li><strong>Felipe Ojeda</strong> não é cirurgião geral plantonista — é UROLOGISTA fellow IDOR-SP, verificado azul. Dossiê inicial errou. Pitch corrigido pra Águia em construção.</li>
+        <li><strong>Marina Marangon</strong> tem só 100 seguidores no @dramarinamelhado apesar do selo azul + CNN. Perfil recém-aberto/migrado. Dor central: autoridade externa &gt; audiência interna.</li>
+        <li><strong>Tarik Suleiman</strong> tem 31,6k seg + verificado azul + Mateus já segue. É Águia digital, não Gavião. Posicionamento já cravado: "Cirurgião de vesícula".</li>
+        <li><strong>Eduardo Watanabe</strong>: 6.808 seg / 672 posts (não 5.300/592) · 2 RQEs (12516 + 12515)</li>
+        <li><strong>Paulo Victor</strong>: confirmado 97% via planilha — Paulo Victor DE SOUZA Pereira, sócio ICOD Brasília</li>
+      </ul>
     </div>
 
     <div class="block">
@@ -251,31 +377,30 @@ def render_hub():
         <li>Patrick listou <strong>Patrubi</strong> · grafia oficial: <strong>Patruni</strong> (com N)</li>
         <li>Patrick listou <strong>Tarick</strong> · grafia oficial: <strong>Tarik</strong> (sem C)</li>
         <li>Patrick listou <strong>Mariana Marangon</strong> · nome correto: <strong>Marina Marangon Melhado</strong></li>
-        <li>Felipe Ojeda assina <strong>Fellype</strong> com Y em publicações acadêmicas</li>
       </ul>
     </div>
   </div>
 </section>
 
-{FOOT}
+{FOOT_OPS}
 """
     out = HEAD.format(title=title, desc=desc) + body
     with open(os.path.join(OUT, "index.html"), "w", encoding="utf-8") as f:
         f.write(out)
-    print(f"  ✓ index.html (hub)")
+    print(f"  ✓ index.html (painel operacional)")
 
-# ============ INDIVIDUAL ============
+# ============================================================================
+# INDIVIDUAL · APRESENTAÇÃO PRO MÉDICO + PITCH NO FINAL
+# ============================================================================
 def render_individual(c):
     title = f"{c['nome']} · Diagnóstico CPP · 06/05"
     desc = f"Mapa diagnóstico individual para {c['nome']} — Cirurgião Particular Premium · 06 de Maio 2026"
-    pc = perfil_class(c.get('perfil_cpp'))
-    pl = perfil_label(c.get('perfil_cpp'))
 
     correcao_html = ""
-    if c.get('correcao_grafia'):
-        correcao_html = f'<div class="note"><h5>Nota de identidade</h5><p>{safe(c["correcao_grafia"])}</p></div>'
+    # correção de grafia só aparece pra alguns (não confunde médico com nota interna)
+    if c.get('correcao_grafia') and ('CORREÇÃO MASSIVA' not in c['correcao_grafia']):
+        correcao_html = f'<div class="note"><h5>Nota</h5><p>{safe(c["correcao_grafia"])}</p></div>'
 
-    # IDENTIDADE
     formacao_li = li(c.get('formacao'))
     estruturas_li = li(c.get('estruturas'))
     credenciais_li = li(c.get('credenciais'))
@@ -285,32 +410,21 @@ def render_individual(c):
         ig_status = "aberto" if c.get('instagram_aberto') else "fechado / inativo"
         seg = c.get('instagram_seguidores')
         seg_str = f" · {seg} seguidores" if seg and seg != "—" else ""
-        redes_rows.append(f'<div class="kv-row"><span class="k">Instagram</span><span class="v"><a href="{c["instagram_url"]}" target="_blank" rel="noopener">{safe(c["instagram"])}</a> · <span class="muted">{ig_status}{seg_str}</span></span></div>')
+        redes_rows.append(('Instagram', f'<a href="{c["instagram_url"]}" target="_blank" rel="noopener">{safe(c["instagram"])}</a> · <span class="muted">{ig_status}{seg_str}</span>'))
     if c.get('site'):
-        redes_rows.append(f'<div class="kv-row"><span class="k">Site</span><span class="v"><a href="{c["site"]}" target="_blank" rel="noopener">{safe(c["site"])}</a></span></div>')
+        redes_rows.append(('Site', f'<a href="{c["site"]}" target="_blank" rel="noopener">{safe(c["site"])}</a>'))
     if c.get('doctoralia'):
-        redes_rows.append(f'<div class="kv-row"><span class="k">Doctoralia</span><span class="v"><a href="{c["doctoralia"]}" target="_blank" rel="noopener">ver perfil</a></span></div>')
+        redes_rows.append(('Doctoralia', f'<a href="{c["doctoralia"]}" target="_blank" rel="noopener">ver perfil</a>'))
     if c.get('linkedin'):
-        redes_rows.append(f'<div class="kv-row"><span class="k">LinkedIn</span><span class="v"><a href="{c["linkedin"]}" target="_blank" rel="noopener">ver perfil</a></span></div>')
+        redes_rows.append(('LinkedIn', f'<a href="{c["linkedin"]}" target="_blank" rel="noopener">ver perfil</a>'))
 
     redes_kv_html = ""
     if redes_rows:
-        redes_kv_html = '<div class="kv">' + "".join(redes_rows).replace('<div class="kv-row">','').replace('</div>','</span></span></div>').replace('<span class="k">','<div class="k">').replace('</span><span class="v">','</div><div class="v">') + '</div>'
-        # simplificar — vou reconstruir manualmente
-        redes_kv_html = '<div class="kv">'
-        for r in redes_rows:
-            # parse rapido
-            import re
-            m = re.search(r'<span class="k">(.*?)</span><span class="v">(.*?)</span></div>', r, re.S)
-            if m:
-                redes_kv_html += f'<div class="k">{m.group(1)}</div><div class="v">{m.group(2)}</div>'
-        redes_kv_html += '</div>'
+        redes_kv_html = '<div class="kv">' + ''.join(f'<div class="k">{k}</div><div class="v">{v}</div>' for k,v in redes_rows) + '</div>'
 
-    # POTENCIAL (público)
     posicao_atual_html = c.get('posicionamento_atual_publico') or ""
     potencial_html = c.get('potencial_publico') or ""
 
-    # DORES (3 tiles)
     dores_html = ""
     for i, (dor, evid) in enumerate(c.get('dores_top3') or [], 1):
         dores_html += f'''
@@ -322,7 +436,6 @@ def render_individual(c):
         </div>
       </div>'''
 
-    # GAPS
     gaps_html = ""
     for area, descricao in c.get('gaps') or []:
         gaps_html += f'''
@@ -331,41 +444,11 @@ def render_individual(c):
         <p>{safe(descricao)}</p>
       </div>'''
 
-    # HOOKS (cirúrgico)
-    hooks_html = ""
-    for i, h in enumerate(c.get('hooks_abertura') or [], 1):
-        hooks_html += f'<p class="hook"><span class="hook-num">HOOK {i}</span>"{safe(h)}"</p>'
-
-    # OBJEÇÕES (cirúrgico)
-    objecoes_li = li(c.get('objecoes_esperadas') or [])
-
-    # FONTES
-    fontes_li = "\n".join(f'<li><a href="{f}" target="_blank" rel="noopener">{html.escape(f)}</a></li>' for f in (c.get('fontes') or []))
-
-    # bio IG (cirúrgico)
-    instagram_detail = ""
-    if c.get('instagram'):
-        bio = safe(c.get('instagram_bio'))
-        tom = safe(c.get('instagram_tom'))
-        instagram_detail = f"""
-      <div class="kv">
-        <div class="k">Bio</div><div class="v">{bio}</div>
-        <div class="k">Tom</div><div class="v">{tom}</div>
-        <div class="k">Posts</div><div class="v">{safe(c.get('instagram_posts'))}</div>
-        <div class="k">Tagline atual</div><div class="v">{safe(c.get('tagline_atual') or "—")}</div>
-      </div>"""
-
-    score_html = ""
-    if c.get('score_compra'):
-        score_html = f'''
-      <div class="score-block">
-        <span class="score-num">{c["score_compra"]}</span>
-        <span class="score-max">/100</span>
-        <span class="score-label">· Score de compra · base CPP</span>
-      </div>'''
+    # mapa da oferta
+    oferta_section = render_oferta_mapa()
 
     body = f"""
-{TOPBAR.format(nav=nav_back_button())}
+{TOPBAR.format(label='Mapa Diagnóstico', nav=nav_back_button())}
 
 <section class="hero">
   <div class="wrap-narrow">
@@ -380,7 +463,7 @@ def render_individual(c):
           <span><strong>📍 {safe(c['cidade'])} · {safe(c['estado'])}</strong></span>
           <span class="dot"></span>
           <span>🕐 <strong>{c['hora']}</strong> · 6 de maio</span>
-          {('<span class="dot"></span><span>🆔 <strong>' + safe(c['crm']) + '</strong></span>') if c.get('crm') else ''}
+          {('<span class="dot"></span><span>🆔 <strong>' + safe(c['crm']) + '</strong></span>') if c.get('crm') and '[A CONFIRMAR' not in (c.get('crm') or '') else ''}
         </div>
         <div class="hero-meta-row">
           <span><a href="{c['zoom']}" target="_blank" rel="noopener">⚡ Sala Zoom da call</a></span>
@@ -453,61 +536,12 @@ def render_individual(c):
       <div class="gold-line"></div>
       <p style="font-family: var(--serif); font-size: 1.05rem; color: var(--text-2); font-style: italic;">É exatamente sobre isso que essa call de hoje existe.</p>
     </div>
-
-    <div class="cta-block">
-      <h2>06 de Maio · {c['hora']}</h2>
-      <p>Patrick Suyti &amp; Dr. Mateus Jerônimo · 60 minutos · sua agenda</p>
-    </div>
   </div>
 </section>
 
-<!-- ============ MODO CIRÚRGICO (Patrick + Mateus) ============ -->
-<section class="cirurgico-section cirurgico" style="display: none">
-  <div class="wrap-narrow">
-    <div class="section-head">
-      <span class="eyebrow" style="color: var(--gold)">Painel cirúrgico</span>
-      <h2>Munição para a call</h2>
-      <span class="perfil-badge {pc}">{safe(pl)}</span>
-      {score_html}
-    </div>
+{oferta_section}
 
-    <div class="block">
-      <span class="block-eyebrow">Por que esse perfil</span>
-      <h3>Evidências observáveis</h3>
-      <ul class="bullets">{li(c.get('perfil_evidencias'))}</ul>
-    </div>
-
-    {('<div class="block"><span class="block-eyebrow">Instagram · leitura</span><h3>O que o perfil te conta</h3>' + instagram_detail + '</div>') if c.get('instagram') else ''}
-
-    <div class="block">
-      <span class="block-eyebrow">Hooks de abertura · primeiros 60s</span>
-      <h3>Três entradas testadas</h3>
-      {hooks_html}
-    </div>
-
-    <div class="block">
-      <span class="block-eyebrow">Objeções esperadas</span>
-      <h3>O que pode vir</h3>
-      <ul class="bullets">{objecoes_li}</ul>
-    </div>
-
-    <div class="block">
-      <span class="block-eyebrow">Abordagem recomendada</span>
-      <h3>Como conduzir</h3>
-      <p style="margin-top: 14px; color: var(--text-2)">{safe(c.get('abordagem_recomendada'))}</p>
-    </div>
-
-    {('<div class="alert"><h5>Alerta de identidade</h5><p>' + safe(c.get('alerta_homonimo')) + '</p></div>') if c.get('alerta_homonimo') else ''}
-
-    <div class="block">
-      <span class="block-eyebrow">Fontes</span>
-      <h3>De onde veio cada dado</h3>
-      <ul class="sources">{fontes_li}</ul>
-    </div>
-  </div>
-</section>
-
-{FOOT}
+{FOOT_PUBLIC}
 """
     out = HEAD.format(title=title, desc=desc) + body
     fname = f"{c['slug']}.html"
@@ -516,7 +550,7 @@ def render_individual(c):
     print(f"  ✓ {fname}")
 
 if __name__ == "__main__":
-    print("Gerando 9 HTMLs...")
+    print("Gerando 9 HTMLs (1 painel operacional + 8 apresentações)...")
     render_hub()
     for c in CIRURGIOES:
         render_individual(c)
