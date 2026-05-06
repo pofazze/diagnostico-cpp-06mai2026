@@ -1360,7 +1360,7 @@ def iniciais(nome):
 OFERTA = [
     # MENTORIA
     {"cat": "MENTORIA", "icon": "🎯", "nome": "3 Mentorias individuais PREMIUM", "valor": "R$ 100.000", "imensuravel": False, "highlight": True},
-    {"cat": "MENTORIA", "icon": "👥", "nome": "Mentorias quinzenais em grupo com Patrick e/ou Mateus", "valor": "R$ 60.000", "imensuravel": False},
+    {"cat": "MENTORIA", "icon": "👥", "nome": "Mentorias semanais em grupo com Patrick e/ou Mateus", "valor": "R$ 60.000", "imensuravel": False},
     {"cat": "MENTORIA", "icon": "🚀", "nome": "Onboarding PREMIUM com Patrick e/ou Mateus", "valor": "R$ 30.000", "imensuravel": False},
     # MÉTODO
     {"cat": "MÉTODO", "icon": "📚", "nome": "Área de membros com método PREMIUM (7 pilares)", "valor": "R$ 20.000", "imensuravel": False},
