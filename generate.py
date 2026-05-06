@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Gera 9 HTMLs (1 hub painel pra Patrick+Mateus + 8 apresentações pros médicos)."""
 import os, html, re
-from data import CIRURGIOES, iniciais, OFERTA, OFERTA_VALOR_TOTAL_MENSURAVEL, OFERTA_TOTAL_ELEMENTOS, OFERTA_INTANGIVEIS
+from data import (CIRURGIOES, iniciais, OFERTA,
+                  OFERTA_VALOR_TOTAL_MENSURAVEL, OFERTA_TOTAL_ELEMENTOS, OFERTA_INTANGIVEIS,
+                  PRECO_PADRAO, PRECO_DESCONTO_PCT, PRECO_EXCLUSIVO)
 
 OUT = os.path.dirname(os.path.abspath(__file__))
 
@@ -98,12 +100,16 @@ def render_oferta_mapa():
       </div>""")
 
     total_str = f"R$ {OFERTA_VALOR_TOTAL_MENSURAVEL:,}".replace(",",".")
+    padrao_str = f"R$ {PRECO_PADRAO:,}".replace(",",".")
+    exclusivo_str = f"R$ {PRECO_EXCLUSIVO:,}".replace(",",".")
+    economia_str = f"R$ {PRECO_PADRAO - PRECO_EXCLUSIVO:,}".replace(",",".")
+
     return f"""
 <section class="oferta-section">
   <div class="wrap-narrow">
     <div class="section-head" style="text-align: center; margin-bottom: 56px;">
       <span class="eyebrow">O que está dentro</span>
-      <h2>O programa Cirurgião Particular Premium</h2>
+      <h2>O programa <em class="gold-accent">Cirurgião Particular Premium</em></h2>
       <p style="font-family: var(--serif); font-style: italic; font-size: 1.2rem; color: var(--text-2); margin-top: 16px; max-width: 60ch; margin-left: auto; margin-right: auto;">{OFERTA_TOTAL_ELEMENTOS} elementos. {OFERTA_TOTAL_ELEMENTOS - OFERTA_INTANGIVEIS} com preço de mercado declarado. {OFERTA_INTANGIVEIS} intangíveis que não cabem em planilha.</p>
     </div>
 
@@ -122,10 +128,49 @@ def render_oferta_mapa():
         <div class="oferta-total-sub">{OFERTA_INTANGIVEIS} elementos · marca, comunidade, ritual, elite</div>
       </div>
     </div>
+  </div>
+</section>
 
-    <div class="cta-block" style="margin-top: 48px;">
-      <p class="eyebrow" style="margin-bottom: 12px;">A pergunta que importa</p>
-      <h2 style="color: var(--text); font-size: clamp(1.6rem, 3vw, 2.2rem); max-width: 22ch; margin: 0 auto;">Por quanto disso você acha que a sua próxima fase vale?</h2>
+<section class="fechamento-section">
+  <div class="wrap-narrow">
+    <div class="section-head" style="text-align: center; margin-bottom: 60px;">
+      <span class="eyebrow gold">Sua condição</span>
+      <h2 style="margin-top: 14px;">Em reconhecimento à <em class="gold-accent">decisão de hoje</em></h2>
+      <p style="font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--text-2); margin-top: 16px; max-width: 56ch; margin-left: auto; margin-right: auto;">Você não chegou aqui por acaso. Pagou um sinal antes de ter qualquer garantia. Confiou primeiro.</p>
+    </div>
+
+    <div class="precos-stack">
+      <!-- Etapa 1: ancoragem -->
+      <div class="preco-step preco-anchor">
+        <div class="preco-step-label">Valor entregue · soma do programa</div>
+        <div class="preco-step-value strike">{total_str}</div>
+        <div class="preco-step-sub">{OFERTA_TOTAL_ELEMENTOS} elementos · {OFERTA_INTANGIVEIS} intangíveis</div>
+      </div>
+
+      <div class="preco-arrow">↓</div>
+
+      <!-- Etapa 2: padrão -->
+      <div class="preco-step preco-standard">
+        <div class="preco-step-label">Investimento padrão da mentoria</div>
+        <div class="preco-step-value strike">{padrao_str}</div>
+        <div class="preco-step-sub">acesso pleno · 6 meses de acompanhamento</div>
+      </div>
+
+      <div class="preco-arrow gold">↓</div>
+
+      <!-- Etapa 3: sua condição -->
+      <div class="preco-step preco-final">
+        <div class="preco-final-badge">SUA CONDIÇÃO · −{PRECO_DESCONTO_PCT}%</div>
+        <div class="preco-step-label" style="color: var(--gold-bright);">Investimento exclusivo</div>
+        <div class="preco-step-value gold">{exclusivo_str}</div>
+        <div class="preco-step-sub">economia de {economia_str} · porque você confiou primeiro</div>
+      </div>
+    </div>
+
+    <div class="cta-final">
+      <p class="cta-final-eyebrow">A pergunta agora é simples</p>
+      <h2 class="cta-final-h">Você está pronto para <em class="gold-accent">o próximo capítulo</em>?</h2>
+      <p class="cta-final-sub">06 de Maio · com Patrick Suyti &amp; Dr. Mateus Jerônimo</p>
     </div>
   </div>
 </section>"""
@@ -444,6 +489,67 @@ def render_individual(c):
         <p>{safe(descricao)}</p>
       </div>'''
 
+    # PRÉ-DIAGNÓSTICO
+    pre_diag = c.get('pre_diagnostico') or {}
+    pre_diag_html = ""
+    if pre_diag:
+        pontos = pre_diag.get('pontos') or []
+        pontos_html = "\n".join(f'<li>{safe(p)}</li>' for p in pontos)
+        pre_diag_html = f"""
+<section class="pre-diag-section">
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <span class="eyebrow">Pré-diagnóstico</span>
+      <h2>O retrato em uma frase</h2>
+    </div>
+
+    <blockquote class="pre-diag-frase">
+      <p>"{safe(pre_diag.get('frase_central'))}"</p>
+    </blockquote>
+
+    <div class="pre-diag-pontos">
+      <h4 class="pre-diag-titulo">Os quatro pontos que se conectam</h4>
+      <ol>{pontos_html}</ol>
+    </div>
+
+    <div class="pre-diag-no">
+      <span class="pre-diag-no-label">O nó central</span>
+      <p>{safe(pre_diag.get('no_central'))}</p>
+    </div>
+  </div>
+</section>"""
+
+    # PLANO DE AÇÃO
+    plano = c.get('plano_acao') or []
+    plano_html = ""
+    if plano:
+        fases_html = ""
+        for i, f in enumerate(plano, 1):
+            acoes_li = "\n".join(f'<li>{safe(a)}</li>' for a in f.get('acoes',[]))
+            fases_html += f"""
+      <article class="fase-card">
+        <div class="fase-num">0{i}</div>
+        <div class="fase-body">
+          <div class="fase-prazo">{safe(f.get('fase'))}</div>
+          <h3 class="fase-titulo">{safe(f.get('titulo'))}</h3>
+          <ul class="fase-acoes">{acoes_li}</ul>
+        </div>
+      </article>"""
+
+        plano_html = f"""
+<section class="plano-section">
+  <div class="wrap-narrow">
+    <div class="section-head">
+      <span class="eyebrow">Plano de ação · resumido</span>
+      <h2>O que você faria <em class="gold-accent">como Cirurgião Particular Premium</em></h2>
+      <p style="font-family: var(--serif); font-style: italic; font-size: 1.1rem; color: var(--text-2); margin-top: 14px; max-width: 56ch;">Três fases. Três decisões. Cada uma constrói sobre a anterior.</p>
+    </div>
+
+    <div class="fases-grid">{fases_html}
+    </div>
+  </div>
+</section>"""
+
     # mapa da oferta
     oferta_section = render_oferta_mapa()
 
@@ -523,6 +629,10 @@ def render_individual(c):
     </div>
   </div>
 </section>
+
+{pre_diag_html}
+
+{plano_html}
 
 <section>
   <div class="wrap-narrow">

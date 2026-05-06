@@ -90,6 +90,45 @@ CIRURGIOES = [
             "https://www.escavador.com/sobre/10851668/tatiana-mauad-patruni",
             "https://www.instagram.com/dratatianapatruni/",
         ],
+        "pre_diagnostico": {
+            "frase_central": "Currículo de Águia comunicado como Pato — 14 anos de profundidade técnica diluídos em 5 frentes simultâneas, sem narrativa que dê preço.",
+            "pontos": [
+                "Você acumulou: UFPR + PUC + Otologia + Implante Coclear + Rinoplastia + preceptoria + docência + auditoria municipal — sete identidades em paralelo.",
+                "Mas o paciente premium de rinoplastia em Curitiba não compra sete identidades. Compra UMA narrativa afiada.",
+                "Sua bio fala 'beleza natural sem mudar drasticamente' — mesma frase que 800 outros otorrinos repetem.",
+                "0 reviews no Doctoralia depois de 14 anos = você nunca pediu. Isso já é um diagnóstico.",
+            ],
+            "no_central": "O que te trava não é técnica nem mercado. É escolha. Você precisa decidir qual das sete Tatianas vai ser a marca — e parar de dividir o brilho com as outras seis.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Reposicionar a marca",
+                "acoes": [
+                    "Eleger UMA aresta dentro de rinoplastia (estética conservadora? funcional? étnica? secundária?) e reescrever bio + site em torno dela",
+                    "Solicitar review no Doctoralia para todas as últimas 30 cirurgias — meta: 30 reviews em 30 dias",
+                    "Auditar os 3 convênios — manter só o que entrega ticket > R$ X mínimo",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Estruturar o produto premium",
+                "acoes": [
+                    "Definir jornada premium: pré-cirúrgico (mapeamento + simulação) + cirurgia + pós-cirúrgico (acompanhamento 12 meses) — ticket único R$ 45-65k",
+                    "Sistema ético de antes-e-depois com consentimento + storytelling de transformação",
+                    "Subir consulta de R$ X para R$ 800-1.200 (consulta avaliativa premium)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Acelerar autoridade pública",
+                "acoes": [
+                    "Conteúdo Instagram com identidade visual única (não mais 'didático genérico') — 4 posts/semana com aresta narrativa clara",
+                    "Pitch pra mídia local (TV+rádio Curitiba) baseado no nicho escolhido",
+                    "Sair gradualmente das posições que diluem a marca (auditoria, parte da preceptoria) — preservar só o que constrói autoridade",
+                ],
+            },
+        ],
     },
     {
         "slug": "rafael-bozzo-tacino",
@@ -175,6 +214,45 @@ CIRURGIOES = [
             "https://www.instagram.com/dr.rafael.tacino.uro/",
             "https://teses.usp.br/teses/disponiveis/17/17137/tde-02022016-093721/publico/RafaelBozzoTacinoOrig.pdf",
         ],
+        "pre_diagnostico": {
+            "frase_central": "Top 1% do Brasil em currículo (USP + Sloan-Kettering + Da Vinci) cobrando preço de urologista médio em Ribeirão. A distância entre o que você carrega e o que você cobra é gritante.",
+            "pontos": [
+                "FMRP-USP + Memorial Sloan-Kettering + cirurgia robótica = combinação rara mesmo em capital. Em Ribeirão Preto é singularíssima.",
+                "Consulta R$ 400 em 2026 num cirurgião com fellowship internacional = 50% abaixo do que urologistas com metade do CV cobram em SP/Brasília.",
+                "100% particular declarado, mas a entrada de paciente vem do HC-USP e indicação médica — sem fluxo autônomo direto.",
+                "Instagram com posts educativos genéricos. Bio 'Dr Rafael Tacino - Urologia'. Você se apresenta como qualquer um.",
+            ],
+            "no_central": "Você não precisa construir autoridade — precisa traduzir autoridade em preço, narrativa e sistema. CPP não te ensina nada novo: te ajuda a sistematizar o que você já é, em escala.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Reposicionar como categoria",
+                "acoes": [
+                    "Reescrever bio + site em torno de UMA promessa: 'O uro-oncologista de Ribeirão treinado em Sloan-Kettering' (ou variação)",
+                    "Subir consulta de R$ 400 para R$ 800-1.200 — paciente que paga R$ 400 hoje paga R$ 1.000 amanhã pra ver o cara do Sloan-Kettering",
+                    "Conteúdo Instagram passa a ter rosto + bastidor cirúrgico (com paciente consentido) — sair do tom institucional",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Estruturar a jornada premium",
+                "acoes": [
+                    "Programa 'Próstata Premium' — jornada robótica: pré + cirurgia robótica + acompanhamento 24 meses, ticket único R$ 80-120k",
+                    "Captação inversa: deixar de competir com Unaerp/USP locais e atrair pacientes de Goiânia, Brasília, SP",
+                    "Newsletter mensal pra urologistas + médicos de família da região (referenciamento qualificado)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Construir além das próprias mãos",
+                "acoes": [
+                    "Recrutar 1-2 urologistas júnior pra escalar volume cirúrgico mantendo o nome como marca-mãe",
+                    "Lançar consultoria/mentoria pra urologistas que querem migrar pra robótica",
+                    "Estruturar sucessão e marca institucional (Tacino Urologia como marca, não só pessoa)",
+                ],
+            },
+        ],
     },
     {
         "slug": "paulo-victor-pereira",
@@ -259,6 +337,45 @@ CIRURGIOES = [
             "https://cnpj.biz/30599744000135",
             "https://www.albanymedical.com.br/ortopedia-aguas-claras/icod-instituto-da-coluna-ortopedia-e-dor/",
             "https://www.instagram.com/clinicaicod/",
+        ],
+        "pre_diagnostico": {
+            "frase_central": "Caso de sucesso clínico que ainda não virou negócio. Reputação cravada (151 reviews 5⭐), marca individual zerada — você é invisível dentro da própria clínica que ajudou a fundar.",
+            "pontos": [
+                "7 anos como sócio fundador da ICOD com 9 outros médicos — você dividiu a marca por 10 antes de construir a sua.",
+                "151 avaliações 5⭐ no Doctoralia provam que o paciente que chega adora o atendimento. Mas o paciente premium nem chega — porque não te encontra fora do Doctoralia.",
+                "R$ 350 a consulta em Águas Claras + 54 convênios aceitos = ticket de funcionalismo público num bairro premium.",
+                "Sem Instagram pessoal, sem site próprio, sem LinkedIn em 2026. Sua marca pessoal está dentro de @clinicaicod, junto com 9 outros sócios.",
+            ],
+            "no_central": "A ICOD continua sendo seu ativo. O que falta é construir o 'Dr. Paulo Victor' como marca paralela e complementar — autoridade individual que pode coexistir com a sociedade, mas que cobra pelo seu nome.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Sair do anonimato",
+                "acoes": [
+                    "Eleger sub-nicho dentro de pé/tornozelo (esportivo? hálux valgo? pé do diabético? performance?)",
+                    "Abrir Instagram pessoal com bio cravando o sub-nicho — nada de 'ortopedista'. Algo como 'O cirurgião do hálux valgo de Brasília'",
+                    "Pedir review no Doctoralia para pacientes pessoais (separar da marca ICOD)",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Construir marca pessoal paralela",
+                "acoes": [
+                    "Site próprio (drpaulovictor.com.br) com proposta clara de valor — paralelo à ICOD, não conflitante",
+                    "Subir ticket particular de R$ 350 para R$ 800-1.200 (consulta diferenciada de avaliação)",
+                    "Pacote premium pro sub-nicho escolhido (ex: 'Programa Hálux Valgo Sem Recidiva' R$ 18-28k jornada)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Sair dos convênios diluentes",
+                "acoes": [
+                    "Reduzir convênios aceitos de 54 para 5-10 (manter os de ticket alto, sair de Postal/Camed/Saúde Caixa)",
+                    "Parcerias com clubes esportivos, academias premium, lojas de corrida em Brasília",
+                    "Conteúdo segmentado pro paciente Águas Claras/Lago Sul (não pro Paranoá)",
+                ],
+            },
         ],
     },
     {
@@ -346,6 +463,45 @@ CIRURGIOES = [
             "https://www.escavador.com/sobre/9766774/tarik-soares-suleiman",
             "ABCD - Arquivos Brasileiros de Cirurgia Digestiva (2019)",
         ],
+        "pre_diagnostico": {
+            "frase_central": "Você fez quase tudo certo. 31,6 mil seguidores, verificado azul, posicionamento cravado, site próprio, instituto. O gargalo não é autoridade — é monetização.",
+            "pontos": [
+                "Posicionamento já é PREMIUM por definição: 'Cirurgião de vesícula' (não 'cirurgião digestivo genérico'). Bio com ângulo do paciente: 'liberdade de comer'.",
+                "31,6k seguidores em Araguaína-TO é gigantesco — cirurgiões de capital com fellowship não chegam a esse número.",
+                "Mas: sócio do ICOD com mais médicos = a marca pessoal divide o brilho. Tickets ainda pressionados pela tabela Unimed.",
+                "Você intuíu o método PREMIUM sem ter sido ensinado. Falta agora estruturar o que você intuiu como produto premium replicável.",
+            ],
+            "no_central": "O salto não é construir audiência (já tem). É transformar audiência em jornada premium que cobra R$ 50-80k pela transformação completa, não R$ 8-12k pela cirurgia isolada.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Estruturar o produto premium",
+                "acoes": [
+                    "Desenhar programa 'Liberdade de Comer' — jornada de 6-12 meses: pré + cirurgia + acompanhamento + comunidade · ticket R$ 50-80k",
+                    "Subir ticket de consulta particular de avaliação para R$ 600-1.000 (filtro)",
+                    "Auditar agenda Unimed — plano de saída em 90-120 dias",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Sair da diluição da sociedade",
+                "acoes": [
+                    "Posicionar 'Tarik Suleiman' como marca-mãe e ICOD como infraestrutura — não o contrário",
+                    "Funil de qualificação: secretária comercial dedicada que pré-qualifica antes da agenda",
+                    "Captação inversa: atrair pacientes de Goiânia, Brasília, Belém, Manaus pra Araguaína (turismo médico premium)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Construir além de você",
+                "acoes": [
+                    "Recrutar 1 cirurgião júnior pra escalar volume mantendo Tarik como marca-mãe",
+                    "Lançar mentoria/curso pra cirurgiões digestivos do Norte que querem migrar pra particular",
+                    "Construir o 'Club Norte' — comunidade de cirurgiões premium da região, com você como hub",
+                ],
+            },
+        ],
     },
     {
         "slug": "julio-fran",
@@ -425,6 +581,45 @@ CIRURGIOES = [
             "https://agendaconvenio.com/unimed/timbo/julio-fran-da-silva-pinto",
             "https://hospitaloase.com.br/profissionais/",
             "https://www.instagram.com/drjuliofran/",
+        ],
+        "pre_diagnostico": {
+            "frase_central": "Escassez técnica protegendo invisibilidade comercial. Você é um dos únicos ortopedistas pediátricos do Vale do Itajaí — e só quem tropeça em você por convênio sabe disso.",
+            "pontos": [
+                "Subespecialidade rara (ortopedia pediátrica) em cidade de 46 mil habitantes = oferta artificialmente protegida.",
+                "Mas a escassez te paga em volume Unimed, não em ticket particular. O ROI da raridade está sendo capturado pelo convênio, não por você.",
+                "Sem Instagram público, sem site, sem Doctoralia. Pais de classe média alta de Joinville/Floripa pesquisam — e não te encontram.",
+                "DDD 11 (SP) no celular sugere origem/família em SP — pode ser que seu capital de partida e referência seja maior do que parece.",
+            ],
+            "no_central": "Não é sobre construir mercado. É sobre tornar visível o mercado que já existe pra você e te paga mal hoje. Sua subespecialidade é o ativo — falta narrativa que dê preço.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Sair da invisibilidade",
+                "acoes": [
+                    "Abrir Instagram público @drjuliofran com bio: 'Ortopedista Pediátrico do Vale do Itajaí'",
+                    "30 posts em 30 dias — temas comuns que mãe pesquisa (pé chato, escoliose, dor no joelho, fraturas em crianças)",
+                    "Cadastrar Doctoralia + Google Meu Negócio + clinica.med.br pra aparecer nas buscas locais",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Construir oferta premium",
+                "acoes": [
+                    "Programa de 'consultoria preventiva' pra crianças de 4-14 anos — visitas trimestrais R$ 800-1.200/visita pacote anual R$ 4-6k",
+                    "Parcerias com escolas privadas, clubes esportivos infantis, academias de natação/futebol da região",
+                    "Subir consulta particular de R$ X para R$ 600-900 (consulta avaliativa premium)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Virar referência regional",
+                "acoes": [
+                    "Plano de saída gradual da Unimed (-30% volume convênio em 90 dias)",
+                    "Conteúdo focado em pais premium do Vale + grande Florianópolis + Joinville (não focar em Timbó)",
+                    "Lançar 'segunda opinião pediátrica' por telemedicina pra famílias de SP/RJ — usar ICDH 11 como ativo",
+                ],
+            },
         ],
     },
     {
@@ -510,6 +705,45 @@ CIRURGIOES = [
             "https://www.doctoralia.com.br/marina-marangon-melhado/ortopedista-traumatologista/sao-paulo",
             "https://www.cnnbrasil.com.br/saude/joelho-travado-dor-pode-ser-sinal-precoce-de-artrose/",
             "https://www.correiobraziliense.com.br/cbradar/dra-marina-melhado-ortopedista-como-aliviar-a-dor-da-fascite-plantar-de-forma-segura/",
+        ],
+        "pre_diagnostico": {
+            "frase_central": "Autoridade externa gigante, audiência interna zerada. CNN, Correio, selo azul, Jardim Paulista, particular puro — e 100 seguidores no perfil oficial. Sua casa não cabe a visita que você já recebe.",
+            "pontos": [
+                "Você fez tudo o que a maioria gostaria de fazer: saiu de Cuiabá, foi pra SP, virou particular pura, conquistou mídia tier-1.",
+                "Mas o seu @dramarinamelhado tem 14 posts e 100 seguidores. Esse é o gargalo: a CNN abriu a porta, mas a casa onde você recebe a visita ainda está vazia.",
+                "R$ 300 a consulta em Jardim Paulista, sendo entrevistada na CNN, é underpricing brutal — 5x abaixo do que sua autoridade entrega.",
+                "Site com placeholder '555-555-5555' e 'meuemail@email.com.br' = funil literal quebrado. O lead qualificado da CNN cai num site que parece amador.",
+            ],
+            "no_central": "Você não precisa de mais autoridade. Precisa de máquina que monetize a autoridade que já tem. CPP é sobre virar categoria — não competidora dentro de um nicho lotado.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Consertar o funil + subir ticket",
+                "acoes": [
+                    "Reescrever site (tirar placeholders) + adicionar captura de lead premium + agendamento online",
+                    "Subir consulta de R$ 300 para R$ 1.200-1.500 imediatamente (paciente que paga R$ 300 hoje paga R$ 1.500 amanhã pela CNN)",
+                    "Ativar @dramarinamelhado com 4-5 posts/semana em torno de UMA tese central ('seu corpo é sistema, não peça')",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Nomear o método",
+                "acoes": [
+                    "Nomear o protocolo: 'Método Marina' / 'Protocolo XYZ' / 'Sistema Integrativo X' — passa de ortopedista integrativa pra dona de método",
+                    "Programa premium 'Voltar à corrida sem dor' / 'Performance em 6 meses' — jornada R$ 18-30k de transformação",
+                    "Lista de espera pública (filtro de aplicação) — escassez deliberada eleva ticket",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Categoria, não competidora",
+                "acoes": [
+                    "Lançar produto digital (curso/livro digital sobre o método) — escala fora da agenda",
+                    "Parcerias com boxes de crossfit, clubes de corrida, podcasts de longevidade",
+                    "Estruturar passagem CNN → newsletter própria (50k+ leitores qualificados)",
+                ],
+            },
         ],
     },
     {
@@ -600,6 +834,45 @@ CIRURGIOES = [
             "https://www.catalogo.med.br/doutor/eduardo-watanabe-castanheira-1870802.htm",
             "https://consultas.plus/lista-de-empresas/minas-gerais/patos-de-minas/30590217000160-eduardo-watanabe-castanheira-eireli/",
         ],
+        "pre_diagnostico": {
+            "frase_central": "30 anos de carreira, único formado pelo Pardini do Triângulo Mineiro, dois RQEs, dois MBAs FGV, CNPJ próprio — patrimônio profissional cravado, narrativa pública anônima.",
+            "pontos": [
+                "Você ocupa uma posição que poucos médicos do Brasil ocupam: subespecialista raro com 30 anos no mesmo território — paciente do Triângulo te enxerga como instituição.",
+                "Mas a sua bio do Instagram diz só 'Ortopedista e Traumatologista'. A história que define você (Pardini, 30 anos, único da macrorregião) está invisível.",
+                "672 posts e 6.808 seguidores = 10 seguidores por post. ROI de conteúdo péssimo porque o ângulo está genérico, não pessoal.",
+                "Duplo MBA FGV revela apetite por gestão e legado — você não está só clinicando, está pensando no que deixa.",
+            ],
+            "no_central": "Não é sobre crescer mais. É sobre transformar 30 anos de excelência em legado replicável — curso, mentoria, sucessão, marca institucional que sobreviva à sua aposentadoria. CPP é sobre patamar, não sobre captação.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Recuperar a história",
+                "acoes": [
+                    "Reescrever bio: '30 anos · 5.000+ mãos operadas · Único cirurgião de mão formado pelo Pardini no Triângulo Mineiro'",
+                    "Conteúdo de legado: histórias de pacientes operados há 20+ anos, evolução da cirurgia da mão, casos marcantes",
+                    "Reduzir publicação técnica genérica, aumentar narrativa pessoal e cases reais (com consentimento)",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Estruturar o legado",
+                "acoes": [
+                    "Telemedicina pra cirurgia da mão — segunda opinião pra ortopedistas do interior do MG/GO/TO (R$ 800-1.500/consulta)",
+                    "Programa de mentoria pra ortopedistas júnior interessados em mão (R$ 30-60k/ano por mentorado)",
+                    "Subir ticket particular do consultório para R$ 1.000-1.500 consulta (paciente paga pela história, não pela hora)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Decidir o que vai deixar",
+                "acoes": [
+                    "Estruturar sucessão clínica — sócio júnior ou venda parcial planejada",
+                    "Lançar curso/imersão pra cirurgiões de mão (online + presencial em Patos de Minas) — replicar o método aprendido com Pardini",
+                    "Marca institucional 'Watanabe Cirurgia da Mão' como patrimônio que sobrevive à carreira individual",
+                ],
+            },
+        ],
     },
     {
         "slug": "felipe-ojeda",
@@ -686,6 +959,45 @@ CIRURGIOES = [
             "https://www.rededorsaoluiz.com.br/hospital/sao-luiz-itaim",
             "https://www.escavador.com/sobre/2823316/fellype-de-bulhoes-ojeda",
         ],
+        "pre_diagnostico": {
+            "frase_central": "Engrenagem montada, falta combustível. Você fez o trabalho difícil — UFF + FMABC/TCBC + IDOR-SP + Harvard + selo azul + site próprio + posicionamento tech-forward. O alicerce está pronto. Falta velocidade.",
+            "pontos": [
+                "Selo azul + IDOR-SP + 2 RQEs + Harvard PPCR é currículo de top 1% — raro em qualquer faixa etária, mais ainda na sua.",
+                "Posicionamento NICHADO ('Tech, Performance, Saúde do Homem') é a aposta certa — categoria explosiva em SP/Brasil 2026.",
+                "Mas: 1.017 seguidores e 142 posts apesar do verificado azul = autoridade institucional descolada de tração de audiência. O motor existe, o tanque está vazio.",
+                "Saúde do Homem é nicho crescente — sem aresta única (Tech? Hormonal? Performance? Sexualidade?) corre risco de virar 'mais um'.",
+            ],
+            "no_central": "Você não está começando — está acelerando. CPP não é pra te ensinar a construir marca. É pra cravar a aresta única dentro de Saúde do Homem que faz você virar referência nacional em 12-18 meses.",
+        },
+        "plano_acao": [
+            {
+                "fase": "30 dias",
+                "titulo": "Cravar a aresta única",
+                "acoes": [
+                    "Eleger UMA aresta dentro de Saúde do Homem — Tech (biomarcadores + wearables)? Hormonal? Performance? Sexualidade? — e reescrever bio em torno dela",
+                    "1 post/dia de Instagram em torno da aresta escolhida — densidade vence frequência baixa",
+                    "Estruturar oferta-isca: avaliação 360 do homem (consulta + exames + protocolo) ticket R$ 2-3.5k",
+                ],
+            },
+            {
+                "fase": "60 dias",
+                "titulo": "Construir programa premium",
+                "acoes": [
+                    "Programa 'Performance Masculina 360' — jornada de 6 meses com avaliação + protocolo + acompanhamento + comunidade · R$ 35-55k",
+                    "Parcerias estratégicas: boxes de crossfit premium, clubes (Pinheiros/Hebraica), podcasts de performance/wellness",
+                    "Newsletter quinzenal pra leads qualificados (homens 35-55, executivos, atletas amadores premium)",
+                ],
+            },
+            {
+                "fase": "90 dias",
+                "titulo": "Escalar autoridade nacional",
+                "acoes": [
+                    "Produto digital — curso ou subscriber-only sobre o método (escala fora da agenda cirúrgica)",
+                    "Aparições mídia tier-1 em torno da aresta única (não como 'mais um urologista')",
+                    "Estruturar IDOR-SP como ativo institucional e marca pessoal como ativo individual — coexistência estratégica",
+                ],
+            },
+        ],
     },
 ]
 
@@ -724,3 +1036,10 @@ OFERTA = [
 OFERTA_VALOR_TOTAL_MENSURAVEL = 300000  # soma R$
 OFERTA_TOTAL_ELEMENTOS = len(OFERTA)
 OFERTA_INTANGIVEIS = sum(1 for o in OFERTA if o["imensuravel"])
+
+# ============================================================================
+# FECHAMENTO · oferta padrão e exclusiva (pós-ancoragem)
+# ============================================================================
+PRECO_PADRAO = 60000          # R$ — investimento padrão da mentoria
+PRECO_DESCONTO_PCT = 20       # %
+PRECO_EXCLUSIVO = int(PRECO_PADRAO * (1 - PRECO_DESCONTO_PCT/100))   # R$ 48.000
