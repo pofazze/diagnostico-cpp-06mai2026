@@ -10,6 +10,7 @@ BG_IMAGES = {
     "marina-marangon-melhado": "imagens/06-marina-marangon-melhado.png",
     "eduardo-watanabe-castanheira": "imagens/07-eduardo-watanabe.png",
     "felipe-ojeda": "imagens/08-felipe-ojeda.png",
+    "erica-de-gerard": "imagens/09-erica-de-gerard.png",
 }
 
 # Para cada cirurgião:
@@ -301,6 +302,47 @@ FBI = {
             "Dossiê inicial subestimou — NÃO é Pato cansado. É Águia em construção deliberada",
             "Score 75 · Águia em construção",
             "Pitch deve ser de aceleração, não de fundação. Tom: pares acelerando",
+        ],
+    },
+
+    "erica-de-gerard": {
+        "quote_manifesto": "28 anos. 226 avaliações 5 estrelas. Uma decisão que falta.",
+        "narrativa_publica": "Você se formou na Faculdade de Ciências Médicas de Santos em 1997, fez residência em Ortopedia na Santa Casa de Santos entre 1998 e 2001, é membra da SBOT desde 2001 e Especialista em Cirurgia da Mão titulada pela AMB desde 2009. Em abril de 2024, esteve no <em>Hand & Wrist Cadaver Lab Latam</em>, atualizando a técnica internacionalmente — depois de 28 anos de carreira. Atende em três endereços de Santos e São Vicente, é 100% particular, e tem <em>226 avaliações cinco estrelas</em> no Doctoralia. <em>O que essa página tem pra te oferecer não é começo. É próximo capítulo.</em>",
+        "descobertas_publicas": [
+            "<strong>Faculdade de Ciências Médicas de Santos · Lusíada (1993-1997)</strong> — formação em Santos, residência em Santos, carreira em Santos = raiz da Baixada",
+            "<strong>Residência Ortopedia e Traumatologia · Santa Casa de Santos (1998-2001)</strong>",
+            "<strong>SBOT (Sociedade Brasileira de Ortopedia e Traumatologia)</strong> — membra desde 2001",
+            "<strong>Título de Especialista em Cirurgia da Mão pela AMB (2009)</strong> — 17 anos como especialista titulada",
+            "<strong>Hand & Wrist Cadaver Lab Latam</strong> — abril/2024 · atualização técnica internacional aos 28 anos de carreira",
+            "<strong>226 avaliações 5⭐ no Doctoralia</strong> — palavras-chave dos pacientes: 'humanização, atualização técnica, atenção integral'",
+            "<strong>100% particular declarado</strong> — não aceita convênio · pagamento direto",
+            "<strong>3 endereços de atendimento</strong>: Clínica Ortocenter (Encruzilhada), IMES (Aparecida), Consultório São Vicente",
+            "<strong>Posicionamento de bio sofisticado</strong>: 'Especialista em saúde óssea e funcional da mulher após 40 — prevenindo fraturas, dor e perda de autonomia'",
+            "<strong>Reconhecimento de pares</strong>: seguida pelo Dr. Thiago Carneiro (mentorado CPP) e Dr. Cláudio Tourinho",
+            "<strong>Instagram @dra.ericadegerard</strong>: 290 posts · 2.454 seguidores · 950 seguindo · Threads ativa",
+        ],
+        "pitch_direcionado": [
+            ("Empacotar o nicho duplo em programa nomeado",
+             "Você nichou duas vezes — Cirurgia da Mão + Mulher após 40. Falta empacotar isso como 'Programa Autonomia 40+' ou 'Método Érica de Saúde Óssea'. Avaliação completa (DEXA + força + função) + protocolo + acompanhamento de 6-12 meses. Ticket único R$ 18-30k em vez de consulta avulsa"),
+            ("Capturar valor real do que você entrega",
+             "R$ 600 a consulta sendo cirurgiã de mão titulada AMB com 28 anos é incoerente com o nível técnico. Cirurgião de mão premium em SP cobra R$ 1.200-1.800 só na avaliação. Não é sobre cobrar mais — é sobre cobrar o justo"),
+            ("Concentrar em UM eixo em vez de 3 endereços",
+             "Ortocenter, IMES, São Vicente = agenda dispersa, sem clínica-marca consolidada. O próximo passo é decidir qual endereço vira a 'casa Érica de Gerard' — e usar os outros como satélites"),
+            ("Multiplicar audiência proporcional ao posicionamento",
+             "Bio com promessa premium · 226 reviews 5⭐ · 28 anos · Hand Lab internacional · MAS 2.454 seguidores. O nicho mulher 40+ tem audiência massiva. Conteúdo + parcerias + mídia local Santos podem multiplicar isso por 10 em 12 meses sem virar influencer"),
+        ],
+        "pontos_internos": [
+            "JÁ É 100% particular — pitch CPP padrão 'sair do convênio' NÃO se aplica. Pitch dela é ESCALA do particular (ticket + audiência + autoridade)",
+            "54 anos · nascida 08/01/1972 · fase 2 da carreira · provável mãe de filhos já maiores",
+            "Sobrenome composto Arantes (materno) + Gerard (francesa) + Ferreira (paterno português) = família tradicional Baixada Santista",
+            "NÃO é sócia da Ortocenter (clínica do Dr. Alexis Carneiro com 30+ ortopedistas) nem do IMES — é staff em ambos. Falta clínica-marca própria",
+            "ZERO papers PubMed/Lattes — perfil clínico-cirúrgico, não acadêmico",
+            "Sem site próprio · sem Linktree · stack digital embrionário",
+            "Investe em atualização internacional (Hand Lab Latam abril/24) = ela quer excelência técnica, não estagnou",
+            "Mateus pode usar ponte natural via Dr. Thiago Carneiro (mentorado CPP que segue ela)",
+            "Tom da bio é técnico-sóbrio (não influencer). Patrick deve respeitar isso — não tratar como Pato/Urubu nem fingir que ela é iniciante",
+            "Hipótese de dor central: 'tecnicamente excelente, financeiramente OK, mas estagnada em autoridade e ticket'. Ela faz cirurgia premium cobrando preço de consulta geral",
+            "Alavanca emocional: 28 anos de carreira sem virar referência pública da Baixada Santista — esse delta é dor latente forte",
         ],
     },
 }
