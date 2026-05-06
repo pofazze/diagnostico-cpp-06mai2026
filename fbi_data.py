@@ -54,7 +54,7 @@ FBI = {
 
     "rafael-bozzo-tacino": {
         "quote_manifesto": "Você venceu a fase 1. Está na fase 2: virar marca.",
-        "narrativa_publica": "Você se formou na FMRP-USP, fez residência no HC, defendeu mestrado em 2015 com o Prof. Dr. Rodolfo Borges dos Reis — o primeiro urologista brasileiro convidado para o Consenso Mundial de Câncer de Próstata Avançado. A banca foi Cologna e Tucci. Depois disso, você fez fellowship no Memorial Sloan-Kettering em Nova York. Voltou pra Ribeirão e foi parte da equipe que realizou a primeira cirurgia robótica de Ribeirão Preto, em junho de 2019, no São Lucas. Hoje é Médico Assistente e chefe da Urologia Oncológica do HC-FMRP-USP. <em>Currículo, você tem.</em>",
+        "narrativa_publica": "Você se formou na FMRP-USP, fez residência no HC, defendeu mestrado em 2015 com o Prof. Dr. Rodolfo Borges dos Reis — o primeiro urologista brasileiro convidado para o Consenso Mundial de Câncer de Próstata Avançado. A banca foi Cologna e Tucci. Depois disso, você fez fellowship no Memorial Sloan-Kettering em Nova York. Voltou pra Ribeirão e foi parte da equipe que realizou a primeira cirurgia robótica de Ribeirão Preto, em junho de 2019, no São Lucas. Hoje é Médico Assistente e chefe da Urologia Oncológica do HC-FMRP-USP. Tem perfil verificado, 440 posts no Instagram, 7 destaques temáticos organizados, linktree e Threads ativos. <em>Currículo e produção, você tem.</em>",
         "descobertas_publicas": [
             "<strong>FMRP-USP graduação + residência + mestrado (2015)</strong> — tese sobre finasterida e PSA em pacientes jovens, orientada por Rodolfo Borges dos Reis",
             "<strong>Banca de mestrado</strong>: Adauto José Cologna (presidente) + Silvio Tucci Junior — peso máximo USP",
@@ -66,6 +66,7 @@ FBI = {
             "<strong>Membro Titular</strong>: SBU (TiSBU) · Endourological Society · Confederación Americana de Urología (CAU) · American Urological Association (AUA)",
             "<strong>Endereço premium</strong>: Av. Antônio Diederichsen 400, Metropolitan Business Center, Jardim América",
             "<strong>Doctoralia</strong>: 13 reviews · 5 estrelas · palavras recorrentes 'didático', 'humanizado', 'esclarece'",
+            "<strong>Instagram verificado</strong> @dr.rafael.tacino.uro · 440 posts · 4.025 seguidores · 7 destaques temáticos (Disf Erétil · Cálculos · Robótica · Vasectomia · Hormonal · Testes · Perguntas) · linktree + Threads ativos",
         ],
         "pitch_direcionado": [
             ("Reposicionar como categoria, não como urologista genérico",
